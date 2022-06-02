@@ -1,6 +1,30 @@
 import { createApp } from 'vue';
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { fas, faBars } from '@fortawesome/free-solid-svg-icons';
+import { fab } from '@fortawesome/free-brands-svg-icons';
+import { far } from '@fortawesome/free-regular-svg-icons';
+import VueChartkick from 'vue-chartkick';
+import Chart from 'chart.js/auto';
+import axios from 'axios';
+import VueAxios from 'vue-axios';
+import VueApexCharts from "vue3-apexcharts";
 import App from './App.vue';
 import router from './router';
 import store from './store';
+import VeeValidatePlugin from './includes/validtions';
+import ScrollAnimation from './directives/scrollanimation';
 
-createApp(App).use(store).use(router).mount('#app');
+import './assets/tailwind.css';
+
+library.add(fas, fab, faBars, far);
+const app = createApp(App);
+app.component('font-awesome-icon', FontAwesomeIcon);
+app.directive('scrollanimation', ScrollAnimation);
+app.use(store);
+app.use(router);
+app.use(VueChartkick.use(Chart));
+app.use(VueAxios, axios);
+app.use(VueApexCharts, VueApexCharts);
+app.use(VeeValidatePlugin);
+app.mount('#app');

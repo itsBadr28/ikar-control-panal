@@ -1,30 +1,29 @@
 <template>
-  <nav>
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </nav>
-  <router-view/>
+<div>
+  <!-- <SideBar /> -->
+  <div>
+    <!-- <Nav class=" transition-all " :style="{ 'margin-left': sidebarWidth }" /> -->
+    <router-view class=" transition-all " :style="{ 'margin-left': sidebarWidth }" />
+  </div>
+</div>
 </template>
 
+<script>
+import SideBar from './components/Sidebar.vue';
+import { sidebarWidth } from './SideBar/sideBar';
+import Nav from './components/Nav.vue';
+
+export default {
+  name: 'App',
+  components: {
+    // SideBar,
+    // Nav,
+  },
+  setup() {
+    return { sidebarWidth };
+  },
+};
+</script>
+
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-
-nav {
-  padding: 30px;
-}
-
-nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-nav a.router-link-exact-active {
-  color: #42b983;
-}
 </style>
