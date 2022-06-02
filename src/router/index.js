@@ -6,6 +6,7 @@ import Orders from '../views/Orders.vue';
 import Analysis from '../views/Analysis.vue';
 import Customers from '../views/Customers.vue';
 import Staffs from '../views/Staffs.vue';
+import Vehicles from '../views/Vehicles.vue';
 
 const routes = [
   {
@@ -42,6 +43,11 @@ const routes = [
     path: '/staffs',
     name: 'Staffs',
     component: Staffs,
+  },
+  {
+    path: '/vehicles',
+    name: 'Vehicles',
+    component: Vehicles,
   },
 ];
 

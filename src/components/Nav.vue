@@ -18,9 +18,47 @@
                 <font-awesome-icon class="text-white dark:text-[#212529] p-1.5  text-xl " icon="bell" />
                 <span class="absolute right-1.5 w-1.5 h-1.5 bg-red-600 rounded-full top-2 "></span>
             </div>
-            <div class="my-auto m-0.5 w-8 h-8  dark:hover:bg-gray-200 hover:bg-gray-400 rounded-full relative">
-                <font-awesome-icon class="text-white dark:text-[#212529] p-1.5  text-xl " icon="gear" />
+             <div class="relative inline-block my-auto text-left">
+                <button @click="toggledropDownOpen" class=" relative flex justify-center items-center group text-[#141517] rounded focus:text-white">
+             <div class=" w-8 h-8  hover:bg-gray-400 dark:hover:bg-gray-200 rounded-full flex  relative ">
+              <font-awesome-icon class="text-white dark:text-[#212529]  p-1.5 text-xl" icon="gear" />
             </div>
+          </button>
+            <div :class=" dropDownOpen ? '':'hidden'" class="absolute top-full z-10  group-focus:block min-w-full w-max bg-white mt-1 rounded">
+              <div class=" origin-top-right absolute right-0 -top-1 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
+                  <div @click="toggledropDownOpen" class="py-1"> 
+                    <div @click="toggleuserProfile">
+                    <a   class="hover:bg-slate-200 text-[#141517] block px-4 text-left py-2 text-md">Profile</a>
+                      </div>                   
+                      <div  
+                        @click="toggleIssignIn"
+                      >
+                      <button
+                        class="
+                          text-[#141517]
+                          hover:bg-slate-200
+                          block
+                          w-full
+                          my-auto
+                          text-left
+                          px-4
+                          py-2
+                          text-md
+                          font-body
+                          font-bold
+                        "
+                      >
+                        Sign out
+                      <font-awesome-icon
+                        class="text-[#141517] ml-28 my-auto  text-md"
+                        icon="arrow-right-from-bracket"
+                      />
+                      </button>
+                      </div>
+                  </div>
+                </div> 
+            </div>
+          </div>
               <div  @click.prevent="tiggleIsDark" class="bg-slate-200 w-8 h-8 m-1 my-auto mr-2 hover:bg-slate-300 transition  duration-500   rounded-full">
                 <font-awesome-icon class="text-[#212529] p-1.5 dark:block hidden hover:rotate-180 transition duration-500 text-xl " icon="sun" />
                 <font-awesome-icon class="text-[#212529] p-1.5 dark:hidden hover:rotate-180 transition duration-500 text-xl " icon="moon" />
@@ -37,14 +75,19 @@
              
         </div>
     </div>
+    <UserProfile />
 </div>
 </template>
 
 <script>
 import { mapMutations, mapState } from 'vuex';
+import UserProfile from './userProfile.vue';
 
 export default {
   name: 'Nav-',
+  components: {
+    UserProfile,
+  },
   data() {
     return {
       userName: '',
@@ -64,9 +107,17 @@ export default {
     isDark() {
       return this.$store.getters.Dark;
     },
+    dropDownOpen() {
+      return this.$store.getters.dropDownOpen;
+    },
+    userProfileModalShow() {
+      return this.$store.getters.userProfileModalShow;
+    },
   },
   methods: {
     ...mapMutations(['tiggleIsDark']),
+    ...mapMutations(["toggledropDownOpen"]),
+    ...mapMutations(["toggleuserProfile"]),
     getweather: async function () {
       navigator.geolocation.getCurrentPosition(async position => {
         const lat = position.coords.latitude;

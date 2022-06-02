@@ -17,11 +17,15 @@ export default createStore({
     addStaffModalShow: false,
     staffProfileModalShow: false,
     tenantProfileModalShow: false,
+    dropDownOpen: false,
+    userProfileModalShow: false,
   },
   getters: {
     Dark: (state) => state.Dark,
     addStaffModalShow: (state) => state.addStaffModalShow,
     staffProfileModalShow: (state) => state.staffProfileModalShow,
+    userProfileModalShow: (state) => state.userProfileModalShow,
+    dropDownOpen: (state) => state.dropDownOpen,
     tenantProfileModalShow: (state) => state.tenantProfileModalShow,
   },
   mutations: {
@@ -40,6 +44,13 @@ export default createStore({
     toggletenantProfile: (state) => {
       state.tenantProfileModalShow = !state.tenantProfileModalShow;
       console.log(tenantProfileModalShow);
+    },
+    toggledropDownOpen: (state) => {
+      state.dropDownOpen = !state.dropDownOpen;
+    },
+    toggleuserProfile: (state) => {
+      state.userProfileModalShow = !state.userProfileModalShow;
+      // console.log(staffProfileModalShow);
     },
   },
 });
