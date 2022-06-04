@@ -26,6 +26,7 @@ module.exports = {
     'prefer-template': 'off',
     'no-shadow': 'off',
     'max-len': 'off',
+    'global-require': 'off',
   },
   overrides: [
     {

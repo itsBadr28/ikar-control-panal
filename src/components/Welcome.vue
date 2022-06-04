@@ -44,11 +44,6 @@ export default {
     };
   },
   methods: {
-    playy() {
-      const startSound = new Audio('../audio/xbox.mp3');
-      startSound.play();
-      this.isHidden = !this.isHidden;
-    },
     async created() {
       const data = sessionStorage.getItem('userName');
       console.log(data);
@@ -58,9 +53,15 @@ export default {
     goDashboard() {
       this.$router.push('/dashboard');
     },
+    playSound() {
+      // this.$router.push('/dashboard');
+      const audio = new Audio(require('../assets/xbox.mp3'));
+      audio.play();
+    },
   },
   beforeMount() {
     this.created();
+    this.playSound();
   },
 };
 </script>
