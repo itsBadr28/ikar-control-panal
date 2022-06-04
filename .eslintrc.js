@@ -25,6 +25,7 @@ module.exports = {
     'prefer-destructuring': 'off',
     'prefer-template': 'off',
     'no-shadow': 'off',
+    'max-len': 'off',
   },
   overrides: [
     {

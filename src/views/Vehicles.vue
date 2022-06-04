@@ -22,14 +22,14 @@
                    <div class="w-[90%] mx-auto  relative">
                        <div class="flex w-full my-4  justify-between">
                          <div>
-                           <button class="py-2 px-4 w-24 font-body font-bold bg-white text-black rounded"> Filter <font-awesome-icon icon="filter" /></button>
+                           <button @click="filter = !filter" class="py-2 px-4 w-24 font-body font-bold bg-white text-black rounded"> Filter <font-awesome-icon icon="filter" /></button>
                          </div>
                          <div class="w-[90%] ">
-                           <input type="text" class=" px-4 font-body  py-2 w-[90%] rounded-l h-10" placeholder="Enter Vehicles">
+                           <input type="text" v-model="search" class=" px-4 font-body  py-2 w-[90%] rounded-l h-10" placeholder="Enter Vehicles">
                            <button class="py-2 px-4 bg-[#10b981] font-body font-bold text-white h-10 rounded-r"> Search </button>
                          </div>
                        </div>
-                       <div class="flex w-[97%] lg:hidden mx-auto justify-between dark:bg-white bg-gray-100 my-1 rounded absolute">
+                       <div v-scrollanimation v-if="filter" class="flex w-[97%] -translate-y-10 duration-200 z-10  mx-auto justify-between dark:bg-white bg-gray-100  rounded absolute">
                          <div class="m-4">
                            <header class="border-b bg-gray-200 border-[#10b981]">
                             <h1 class="text dark:text-white text-[#171818] font-body font-bold py-2 px-4"> Vehicles Fuel </h1>
@@ -137,287 +137,108 @@
         </div>
         <div class="flex mx-auto w-full p-5 ">
           <div class="w-[70%] flex flex-wrap justify-between">
-            <div v-scrollanimation  class="relative translate-y-24 duration-800  w-[32%]  mb-16 shadow">
-              <div class="bg-[#171818] h-[21.5rem] rounded-t-lg  ">
-                 <h1 class="text-white text-2xl font-body font-bold p-2 uppercase text-center">dddddddddddd</h1>
-                 <h1 class="text-lg text-center font-body  text-white">
-                   Lorem ipsum dolor sit amet.
+            <div v-if="vehicles" v-for="vehicle in filteredVehicles" :key="vehicle" v-scrollanimation  class=" translate-y-16 duration-500 z-0  w-[32%]  mb-16 ">
+              <div class="bg-[#171818] dark:bg-white h-[21.5rem] rounded-t-lg  ">
+                 <h1 class="text-white dark:text-[#171818] text-2xl font-body font-bold p-2 uppercase text-center">{{ vehicle.name }}</h1>
+                 <h1 class="text-lg text-center font-body  text-white dark:text-[#171818]">
+                   {{ vehicle.description }}
                  </h1>
-                 <div class="flex mx-auto text-white justify-center flex-wrap">
+                 <div class="flex mx-auto text-white dark:text-[#171818] justify-center flex-wrap">
                 <div class="flex">
                   <font-awesome-icon class="p-2" icon="gear" />
-                  <h1 class="font-body py-1">Automatic</h1>
+                  <h1 v-if="vehicle.isAutomatic" class="font-body py-1">Automatic</h1>
+                  <h1 v-if="!vehicle.isAutomatic" class="font-body py-1">manual</h1>
                 </div>
                 <div class="flex">
                   <font-awesome-icon class="p-2" icon="user" />
-                  <h1 class="font-body py-1">4 Passengers</h1>
+                  <h1 class="font-body py-1">{{ vehicle.placeNumber }} Passengers</h1>
                 </div>
                 <div class="flex">
                   <font-awesome-icon class="p-2" icon="suitcase" />
-                  <h1 class="font-body py-1">3 Bags</h1>
+                  <h1 class="font-body py-1">{{ vehicle.bagsNumber }} Bags</h1>
                 </div>
                 <div class="flex">
                   <font-awesome-icon class="p-2" icon="gas-pump" />
                   <h1 class="font-body py-1">gas</h1>
                 </div>
                  </div>
-                 <img src="../assets/img/car8.png" alt="">
+                 <img :src="`data:image/png;base64,${vehicle.picture}`" alt="">
               </div>
               <div class="absolute rounded-b flex  w-full h-12 bg-[#10b981]">
-                <h1 class="text-white my-auto font-body font-bold mx-4 text-2xl">BMW 2021</h1>
-                <button class=" h-10 my-auto ml-auto mr-4 rounded text-sm font-body font-bold text-[#212529] bg-white p-2"> SHOW MORE </button>
-              </div>
-            </div>
-            <div v-scrollanimation class="relative  translate-y-24 duration-800 w-[32%]  mb-16 shadow">
-              <div class="bg-[#171818] h-[21.5rem] rounded-t-lg  ">
-                 <h1 class="text-white text-2xl font-body font-bold p-2 uppercase text-center">dddddddddddd</h1>
-                 <h1 class="text-lg text-center font-body  text-white">
-                   Lorem ipsum dolor sit amet.
-                 </h1>
-                 <div class="flex mx-auto text-white justify-center flex-wrap">
-                <div class="flex">
-                  <font-awesome-icon class="p-2" icon="gear" />
-                  <h1 class="font-body py-1">Automatic</h1>
-                </div>
-                <div class="flex">
-                  <font-awesome-icon class="p-2" icon="user" />
-                  <h1 class="font-body py-1">4 Passengers</h1>
-                </div>
-                <div class="flex">
-                  <font-awesome-icon class="p-2" icon="suitcase" />
-                  <h1 class="font-body py-1">3 Bags</h1>
-                </div>
-                <div class="flex">
-                  <font-awesome-icon class="p-2" icon="gas-pump" />
-                  <h1 class="font-body py-1">gas</h1>
-                </div>
-                 </div>
-                 <img src="../assets/img/1543605917710.png" alt="">
-              </div>
-              <div class="absolute rounded-b flex  w-full h-12 bg-[#10b981]">
-                <h1 class="text-white my-auto font-body font-bold mx-4 text-2xl">BMW 2021</h1>
-                <button class=" h-10 my-auto ml-auto mr-4 rounded text-sm font-body font-bold text-[#212529] bg-white p-2"> SHOW MORE </button>
-              </div>
-            </div>
-            <div v-scrollanimation class="relative  translate-y-24 duration-800 w-[32%]  mb-16 shadow">
-              <div class="bg-[#171818] h-[21.5rem] rounded-t-lg  ">
-                 <h1 class="text-white text-2xl font-body font-bold p-2 uppercase text-center">dddddddddddd</h1>
-                 <h1 class="text-lg text-center font-body  text-white">
-                   Lorem ipsum dolor sit amet.
-                 </h1>
-                 <div class="flex mx-auto text-white justify-center flex-wrap">
-                <div class="flex">
-                  <font-awesome-icon class="p-2" icon="gear" />
-                  <h1 class="font-body py-1">Automatic</h1>
-                </div>
-                <div class="flex">
-                  <font-awesome-icon class="p-2" icon="user" />
-                  <h1 class="font-body py-1">4 Passengers</h1>
-                </div>
-                <div class="flex">
-                  <font-awesome-icon class="p-2" icon="suitcase" />
-                  <h1 class="font-body py-1">3 Bags</h1>
-                </div>
-                <div class="flex">
-                  <font-awesome-icon class="p-2" icon="gas-pump" />
-                  <h1 class="font-body py-1">gas</h1>
-                </div>
-                 </div>
-                 <img src="../assets/img/1544210775124.png" alt="">
-              </div>
-              <div class="absolute rounded-b flex  w-full h-12 bg-[#10b981]">
-                <h1 class="text-white my-auto font-body font-bold mx-4 text-2xl">BMW 2021</h1>
-                <button class=" h-10 my-auto ml-auto mr-4 rounded text-sm font-body font-bold text-[#212529] bg-white p-2"> SHOW MORE </button>
-              </div>
-            </div>
-            <div v-scrollanimation class="relative  translate-y-24 duration-800 w-[32%]  mb-16 shadow">
-              <div class="bg-[#171818] h-[21.5rem] rounded-t-lg  ">
-                 <h1 class="text-white text-2xl font-body font-bold p-2 uppercase text-center">dddddddddddd</h1>
-                 <h1 class="text-lg text-center font-body  text-white">
-                   Lorem ipsum dolor sit amet.
-                 </h1>
-                 <div class="flex mx-auto text-white justify-center flex-wrap">
-                <div class="flex">
-                  <font-awesome-icon class="p-2" icon="gear" />
-                  <h1 class="font-body py-1">Automatic</h1>
-                </div>
-                <div class="flex">
-                  <font-awesome-icon class="p-2" icon="user" />
-                  <h1 class="font-body py-1">4 Passengers</h1>
-                </div>
-                <div class="flex">
-                  <font-awesome-icon class="p-2" icon="suitcase" />
-                  <h1 class="font-body py-1">3 Bags</h1>
-                </div>
-                <div class="flex">
-                  <font-awesome-icon class="p-2" icon="gas-pump" />
-                  <h1 class="font-body py-1">gas</h1>
-                </div>
-                 </div>
-                 <img src="../assets/img/1554931356778.png" alt="">
-              </div>
-              <div class="absolute rounded-b flex  w-full h-12 bg-[#10b981]">
-                <h1 class="text-white my-auto font-body font-bold mx-4 text-2xl">BMW 2021</h1>
-                <button class=" h-10 my-auto ml-auto mr-4 rounded text-sm font-body font-bold text-[#212529] bg-white p-2"> SHOW MORE </button>
-              </div>
-            </div>
-            <div v-scrollanimation class="relative  translate-y-24 duration-800 w-[32%]  mb-16 shadow">
-              <div class="bg-[#171818] h-[21.5rem] rounded-t-lg  ">
-                 <h1 class="text-white text-2xl font-body font-bold p-2 uppercase text-center">dddddddddddd</h1>
-                 <h1 class="text-lg text-center font-body  text-white">
-                   Lorem ipsum dolor sit amet.
-                 </h1>
-                 <div class="flex mx-auto text-white justify-center flex-wrap">
-                <div class="flex">
-                  <font-awesome-icon class="p-2" icon="gear" />
-                  <h1 class="font-body py-1">Automatic</h1>
-                </div>
-                <div class="flex">
-                  <font-awesome-icon class="p-2" icon="user" />
-                  <h1 class="font-body py-1">4 Passengers</h1>
-                </div>
-                <div class="flex">
-                  <font-awesome-icon class="p-2" icon="suitcase" />
-                  <h1 class="font-body py-1">3 Bags</h1>
-                </div>
-                <div class="flex">
-                  <font-awesome-icon class="p-2" icon="gas-pump" />
-                  <h1 class="font-body py-1">gas</h1>
-                </div>
-                 </div>
-                 <img src="../assets/img/1574880314547.png" alt="">
-              </div>
-              <div class="absolute rounded-b flex  w-full h-12 bg-[#10b981]">
-                <h1 class="text-white my-auto font-body font-bold mx-4 text-2xl">BMW 2021</h1>
-                <button class=" h-10 my-auto ml-auto mr-4 rounded text-sm font-body font-bold text-[#212529] bg-white p-2"> SHOW MORE </button>
-              </div>
-            </div>
-            <div v-scrollanimation class="relative  translate-y-24 duration-800 w-[32%]  mb-16 shadow">
-              <div class="bg-[#171818] h-[21.5rem] rounded-t-lg  ">
-                 <h1 class="text-white text-2xl font-body font-bold p-2 uppercase text-center">dddddddddddd</h1>
-                 <h1 class="text-lg text-center font-body  text-white">
-                   Lorem ipsum dolor sit amet.
-                 </h1>
-                 <div class="flex mx-auto text-white justify-center flex-wrap">
-                <div class="flex">
-                  <font-awesome-icon class="p-2" icon="gear" />
-                  <h1 class="font-body py-1">Automatic</h1>
-                </div>
-                <div class="flex">
-                  <font-awesome-icon class="p-2" icon="user" />
-                  <h1 class="font-body py-1">4 Passengers</h1>
-                </div>
-                <div class="flex">
-                  <font-awesome-icon class="p-2" icon="suitcase" />
-                  <h1 class="font-body py-1">3 Bags</h1>
-                </div>
-                <div class="flex">
-                  <font-awesome-icon class="p-2" icon="gas-pump" />
-                  <h1 class="font-body py-1">gas</h1>
-                </div>
-                 </div>
-                 <img src="../assets/img/1574880326498.png" alt="">
-              </div>
-              <div class="absolute rounded-b flex  w-full h-12 bg-[#10b981]">
-                <h1 class="text-white my-auto font-body font-bold mx-4 text-2xl">BMW 2021</h1>
-                <button class=" h-10 my-auto ml-auto mr-4 rounded text-sm font-body font-bold text-[#212529] bg-white p-2"> SHOW MORE </button>
-              </div>
-            </div>
-            <div v-scrollanimation class="relative  translate-y-24 duration-800 w-[32%]  mb-16 shadow">
-              <div class="bg-[#171818] h-[21.5rem] rounded-t-lg  ">
-                 <h1 class="text-white text-2xl font-body font-bold p-2 uppercase text-center">dddddddddddd</h1>
-                 <h1 class="text-lg text-center font-body  text-white">
-                   Lorem ipsum dolor sit amet.
-                 </h1>
-                 <div class="flex mx-auto text-white justify-center flex-wrap">
-                <div class="flex">
-                  <font-awesome-icon class="p-2" icon="gear" />
-                  <h1 class="font-body py-1">Automatic</h1>
-                </div>
-                <div class="flex">
-                  <font-awesome-icon class="p-2" icon="user" />
-                  <h1 class="font-body py-1">4 Passengers</h1>
-                </div>
-                <div class="flex">
-                  <font-awesome-icon class="p-2" icon="suitcase" />
-                  <h1 class="font-body py-1">3 Bags</h1>
-                </div>
-                <div class="flex">
-                  <font-awesome-icon class="p-2" icon="gas-pump" />
-                  <h1 class="font-body py-1">gas</h1>
-                </div>
-                 </div>
-                 <img src="../assets/img/1574880326763.png" alt="">
-              </div>
-              <div class="absolute rounded-b flex  w-full h-12 bg-[#10b981]">
-                <h1 class="text-white my-auto font-body font-bold mx-4 text-2xl">BMW 2021</h1>
-                <button class=" h-10 my-auto ml-auto mr-4 rounded text-sm font-body font-bold text-[#212529] bg-white p-2"> SHOW MORE </button>
-              </div>
-            </div>
-            <div v-scrollanimation class="relative  translate-y-24 duration-800 w-[32%]  mb-16 shadow">
-              <div class="bg-[#171818] h-[21.5rem] rounded-t-lg  ">
-                 <h1 class="text-white text-2xl font-body font-bold p-2 uppercase text-center">dddddddddddd</h1>
-                 <h1 class="text-lg text-center font-body  text-white">
-                   Lorem ipsum dolor sit amet.
-                 </h1>
-                 <div class="flex mx-auto text-white justify-center flex-wrap">
-                <div class="flex">
-                  <font-awesome-icon class="p-2" icon="gear" />
-                  <h1 class="font-body py-1">Automatic</h1>
-                </div>
-                <div class="flex">
-                  <font-awesome-icon class="p-2" icon="user" />
-                  <h1 class="font-body py-1">4 Passengers</h1>
-                </div>
-                <div class="flex">
-                  <font-awesome-icon class="p-2" icon="suitcase" />
-                  <h1 class="font-body py-1">3 Bags</h1>
-                </div>
-                <div class="flex">
-                  <font-awesome-icon class="p-2" icon="gas-pump" />
-                  <h1 class="font-body py-1">gas</h1>
-                </div>
-                 </div>
-                 <img src="../assets/img/car9.png" alt="">
-              </div>
-              <div class="absolute rounded-b flex  w-full h-12 bg-[#10b981]">
-                <h1 class="text-white my-auto font-body font-bold mx-4 text-2xl">BMW 2021</h1>
-                <button class=" h-10 my-auto ml-auto mr-4 rounded text-sm font-body font-bold text-[#212529] bg-white p-2"> SHOW MORE </button>
-              </div>
-            </div>
-            <div v-scrollanimation class="relative  translate-y-24 duration-800 w-[32%]  mb-16 shadow">
-              <div class="bg-[#171818] h-[21.5rem] rounded-t-lg  ">
-                 <h1 class="text-white text-2xl font-body font-bold p-2 uppercase text-center">dddddddddddd</h1>
-                 <h1 class="text-lg text-center font-body  text-white">
-                   Lorem ipsum dolor sit amet.
-                 </h1>
-                 <div class="flex mx-auto text-white justify-center flex-wrap">
-                <div class="flex">
-                  <font-awesome-icon class="p-2" icon="gear" />
-                  <h1 class="font-body py-1">Automatic</h1>
-                </div>
-                <div class="flex">
-                  <font-awesome-icon class="p-2" icon="user" />
-                  <h1 class="font-body py-1">4 Passengers</h1>
-                </div>
-                <div class="flex">
-                  <font-awesome-icon class="p-2" icon="suitcase" />
-                  <h1 class="font-body py-1">3 Bags</h1>
-                </div>
-                <div class="flex">
-                  <font-awesome-icon class="p-2" icon="gas-pump" />
-                  <h1 class="font-body py-1">gas</h1>
-                </div>
-                 </div>
-                 <img src="../assets/img/car11.png" alt="">
-              </div>
-              <div class="absolute rounded-b flex  w-full h-12 bg-[#10b981]">
-                <h1 class="text-white my-auto font-body font-bold mx-4 text-2xl">BMW 2021</h1>
+                <h1 class="text-white my-auto font-body font-bold mx-4 text-2xl">{{ vehicle.brand }} 2021</h1>
                 <button class=" h-10 my-auto ml-auto mr-4 rounded text-sm font-body font-bold text-[#212529] bg-white p-2"> SHOW MORE </button>
               </div>
             </div>
           </div>
-          <div v-scrollanimation class="w-[28%] ml-auto h-screen translate-y-24 duration-800 bg-[#171818] rounded flex flex-wrap justify-between">
+          <div v-scrollanimation class="w-[28%] ml-auto h-screen translate-y-24 duration-800 bg-[#171818] dark:bg-white rounded flex flex-wrap justify-between">
+            <div class="p-4 relative">
+              <div class="h-10 left-[21.5rem] w-10 rounded-sm absolute flex hover:bg-emerald-700 bg-emerald-500 ">
+                <font-awesome-icon class="text-white m-auto text-xl" icon="pen" />
+              </div>
+              <div class="flex ">
+                <h1 class=" text-2xl font-body font-bold text-white dark:text-[#171818] px-2" >Name :</h1>
+                <h1 class=" text-white dark:text-[#171818] py-1 font-body text-lg ">DDDDDDDDDDD</h1>
+              </div>
+              <div class="flex ">
+                <h1 class=" text-2xl font-body font-bold text-white dark:text-[#171818] px-2" >Brand :</h1>
+                <h1 class=" text-white dark:text-[#171818] py-1 font-body text-lg ">BMW</h1>
+              </div>
+              <div class="flex ">
+                <h1 class=" text-2xl font-body font-bold text-white dark:text-[#171818] px-2" >Model :</h1>
+                <h1 class=" text-white dark:text-[#171818] py-1 font-body text-lg ">2 Series</h1>
+              </div>
+              <div class="flex ">
+                <h1 class=" text-2xl font-body font-bold text-white dark:text-[#171818] px-2" >Color :</h1>
+                <h1 class=" text-white dark:text-[#171818] py-1 font-body text-lg ">gray</h1>
+              </div>
+              <div class="flex ">
+                <h1 class=" text-2xl font-body font-bold text-white dark:text-[#171818] px-2" >Registration Number :</h1>
+                <h1 class=" text-white dark:text-[#171818] py-1 font-body text-lg "> 021542 21 39</h1>
+              </div>
+              <div class="flex ">
+                <h1 class=" text-2xl font-body font-bold text-white dark:text-[#171818] px-2" >Depots :</h1>
+                <h1 class=" text-white dark:text-[#171818] py-1 font-body text-lg ">Eloued , Algear</h1>
+              </div>
+              <div class="flex ">
+                <h1 class=" text-2xl font-body font-bold text-white dark:text-[#171818] px-2" >Stat :</h1>
+                <h1 class=" text-white dark:text-[#171818] py-1 font-body text-lg ">rented</h1>
+              </div>
+              <div class="flex ">
+                <h1 class=" text-2xl font-body font-bold text-white dark:text-[#171818] px-2" >Engine :</h1>
+                <h1 class=" text-white dark:text-[#171818] py-1 font-body text-lg ">Automatic</h1>
+              </div>
+              <div class="flex ">
+                <h1 class=" text-2xl font-body font-bold text-white dark:text-[#171818] px-2" >Fuel :</h1>
+                <h1 class=" text-white dark:text-[#171818] py-1 font-body text-lg "> Gas</h1>
+              </div>
+              <div class="flex ">
+                <h1 class=" text-2xl font-body font-bold text-white dark:text-[#171818] px-2" >Price Par Day :</h1>
+                <h1 class=" text-white dark:text-[#171818] py-1 font-body text-lg "> $150</h1>
+              </div>
+              <div class="flex ">
+                <h1 class=" text-2xl font-body font-bold text-white dark:text-[#171818] px-2" >Price Par Hour :</h1>
+                <h1 class=" text-white dark:text-[#171818] py-1 font-body text-lg "> $10</h1>
+              </div>
+              <div class="flex ">
+                <h1 class=" text-2xl font-body font-bold text-white dark:text-[#171818] px-2" >Passengers :</h1>
+                <h1 class=" text-white dark:text-[#171818] py-1 font-body text-lg ">5</h1>
+              </div>
+              <div class="flex ">
+                <h1 class=" text-2xl font-body font-bold text-white dark:text-[#171818] px-2" >Doors :</h1>
+                <h1 class=" text-white dark:text-[#171818] py-1 font-body text-lg "> 4</h1>
+              </div>
+              <div class="flex ">
+                <h1 class=" text-2xl font-body font-bold text-white dark:text-[#171818] px-2" >seconds:</h1>
+                <ul class="">
+                    <li class=" text-white dark:text-[#171818] py-1 font-body text-lg px-1 "> Bluetooth</li>
+                    <li class=" text-white dark:text-[#171818] py-1 font-body text-lg px-1 "> Cruise Control</li>
+                    <li class=" text-white dark:text-[#171818] py-1 font-body text-lg px-1 "> Am/FM Stereo Radio</li>
+                    <li class=" text-white dark:text-[#171818] py-1 font-body text-lg px-1 "> Air Conditioning</li>
+                    <li class=" text-white dark:text-[#171818] py-1 font-body text-lg px-1 "> Leather Interior</li>
+                </ul>
+              </div>
+            </div>
+
           </div>
         </div>
        </div>
@@ -431,6 +252,13 @@ import { sidebarWidth } from '../SideBar/sideBar';
 
 export default {
   name: 'Vehicles-',
+  data() {
+    return {
+      vehicles: [],
+      search: '',
+      filter: false,
+    };
+  },
   components: {
     SideBar,
     Nav,
@@ -439,9 +267,32 @@ export default {
     return { sidebarWidth };
   },
   computed: {
+    filteredVehicles() {
+      return this.vehicles.filter(vehicle => vehicle.description.toLowerCase().includes(this.search.toLowerCase()));
+    },
     isDark() {
       return this.$store.getters.Dark;
     },
+  },
+  mounted() {
+    fetch('http://localhost:3000/api/admin/vehicles')
+      .then(res => res.json())
+      .then(data => {
+        // const vehicles = data.filter(vehicle => vehicle.placeNumber >= this.filterPassengers);
+        const set = new Set();
+        const Output = [];
+        data.forEach(car => {
+          if (!set.has(car.description)) {
+            set.add(car.description);
+            Output.push(car);
+            console.log(data);
+          }
+        });
+
+        this.vehicles = Output;
+        console.log(this.vrhicles);
+      })
+      .catch(err => console.log(err.message));
   },
 };
 </script>
