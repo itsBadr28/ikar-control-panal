@@ -21,6 +21,7 @@
           <SidebarLink to="/customers" class="dark:hover:bg-gray-300 hover:bg-[#0e0f0f] py-0.5 font-body font-bold" icon="fas fa-user">tenants</SidebarLink>
           <SidebarLink to="/staffs" class="dark:hover:bg-gray-300 hover:bg-[#0e0f0f] py-0.5 font-body font-bold" icon="fas fa-user-astronaut">Staffs</SidebarLink>
           <SidebarLink to="/vehicles" class="dark:hover:bg-gray-300 hover:bg-[#0e0f0f] py-0.5 font-body font-bold" icon="fas fa-truck-pickup">Vehicles</SidebarLink>
+          <SidebarLink to="/examine" class="dark:hover:bg-gray-300 hover:bg-[#0e0f0f] py-0.5 font-body font-bold" icon="fas fa-camera-retro">Examine</SidebarLink>
         </div>
         <div :class=" collapsed ? 'w-[100%]' : 'w-[80%] mx-auto'" class=" pt-6 pb-4 ">
             <hr class="border rounded border-gray-700">

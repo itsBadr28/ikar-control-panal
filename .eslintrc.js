@@ -27,6 +27,7 @@ module.exports = {
     'no-shadow': 'off',
     'max-len': 'off',
     'global-require': 'off',
+    'no-multi-assign': 'off',
   },
   overrides: [
     {
