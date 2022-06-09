@@ -38,7 +38,7 @@
           </div>
           </div>
           
-          <button :class=" collapsed ? 'opacity-0  transition duration-75' : ' opacity-100  transition duration-500'"
+          <!-- <button :class=" collapsed ? 'opacity-0  transition duration-75' : ' opacity-100  transition duration-500'"
           class="text-gray-400 bg-gray-700 rounded focus:outline-none focus:ring-1 transition duration-500 focus:ring-gray-500 focus:text-white"
         >
           <svg class="w-4 h-4   stroke-current" fill="none" viewBox="0 0 24 24">
@@ -50,7 +50,7 @@
               d="M15.25 10.75L12 14.25L8.75 10.75"
             ></path>
           </svg>
-        </button>
+        </button> -->
         </div> 
 </div></div>
   

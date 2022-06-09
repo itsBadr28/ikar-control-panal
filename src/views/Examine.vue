@@ -6,7 +6,7 @@
           <div class="dark:bg-[#F1F0FE] bg-[#212529]">
              <div class="flex mx-auto w-full p-5  z-0">
                <div class="w-[60%] h-[600px]">
-            <div  v-scrollanimation  class=" translate-y-24 mr-2.5 bg-[#171818] w-full h-[550px] duration-800     mb-4">
+            <div  v-scrollanimation  class=" translate-y-24 mr-2.5 bg-[#171818] dark:bg-white  w-full h-[550px] duration-800 mb-4">
                 <div v-show="isCameraOpen && isLoading" class="camera-loading">
                   <ul class="loader-circle">
                     <li></li>
@@ -18,13 +18,8 @@
                  <div v-if="isCameraOpen" v-show="!isLoading" class="camera-box" :class="{ 'flash' : isShotPhoto }">
                      <div class="camera-shutter" :class="{'flash' : isShotPhoto}"></div>
                      <video class="mx-auto" v-show="!isPhotoTaken" ref="camera" :width="730" :height="250" autoplay></video>
-                     <canvas v-show="isPhotoTaken" id="photoTaken" ref="canvas" :width="450" :height="337.5"></canvas>
+                     <canvas class="mx-auto" v-show="isPhotoTaken" id="photoTaken" ref="canvas" :width="730" :height="250"></canvas>
                  </div>
-                  <div v-if="isPhotoTaken && isCameraOpen" class="camera-download">
-                     <a id="downloadPhoto" download="my-photo.jpg" class="button" role="button" @click="downloadImage">
-                       Download
-                     </a>
-                  </div>
   
             </div>
             <div class="flex w-full justify-center"> 
@@ -37,6 +32,11 @@
                        <span  class=" text-white font-body font-bold">Get Info</span>
                      </button>
                   </div>
+            <!-- <div v-if="isPhotoTaken && isCameraOpen" class="camera-download">
+               <a id="downloadPhoto" download="my-photo.jpg" class="button" role="button" @click="downloadImage">
+                 Download
+              </a>
+           </div> -->
             </div>
              
     </div>
@@ -76,6 +76,11 @@ export default {
   },
   setup() {
     return { sidebarWidth };
+  },
+  computed: {
+    isDark() {
+      return this.$store.getters.Dark;
+    },
   },
   methods: {
     toggleCamera() {

@@ -19,6 +19,7 @@ export default createStore({
     tenantProfileModalShow: false,
     dropDownOpen: false,
     userProfileModalShow: false,
+    addVehicleModalShow: false,
   },
   getters: {
     Dark: (state) => state.Dark,
@@ -27,6 +28,7 @@ export default createStore({
     userProfileModalShow: (state) => state.userProfileModalShow,
     dropDownOpen: (state) => state.dropDownOpen,
     tenantProfileModalShow: (state) => state.tenantProfileModalShow,
+    addVehicleModalShow: (state) => state.addVehicleModalShow,
   },
   mutations: {
     tiggleIsDark: (state) => {
@@ -51,6 +53,9 @@ export default createStore({
     toggleuserProfile: (state) => {
       state.userProfileModalShow = !state.userProfileModalShow;
       // console.log(staffProfileModalShow);
+    },
+    toggleAddVehicle: (state) => {
+      state.addVehicleModalShow = !state.addVehicleModalShow;
     },
   },
 });

@@ -70,11 +70,14 @@
               </div>
             </div>
           </div>
+          <div>
+            <button @click="toggleAddVehicle" v-scrollanimation class="w-[410px] mb-4 ml-auto h-12 translate-y-24 duration-800 bg-emerald-500 hover:bg-emerald-600 my-auto rounded flex flex-wrap">
+              <h1 class="text-white m-auto font-body font-bold text-xl"> 
+                <font-awesome-icon class="my-auto" icon="plus" />
+                Add Vehicles </h1>
+            </button>
           <div v-scrollanimation class="w-[410px] ml-auto h-screen translate-y-24 duration-800 bg-[#171818] dark:bg-white rounded flex flex-wrap justify-between">
-            <div class="p-4 relative">
-              <div class="h-10 left-[20.8rem] w-10 rounded-sm shadow-lg  shadow-[#0000005c] absolute flex hover:bg-emerald-700 bg-emerald-500 ">
-                <font-awesome-icon class="text-white m-auto text-xl" icon="pen" />
-              </div>
+            <div class="p-4 ">
               <div class="flex ">
                 <h1 class=" text-2xl font-body font-bold text-white dark:text-[#171818] px-2" >Name :</h1>
                 <h1 class=" text-white dark:text-[#171818] py-1 font-body text-lg ">Standard Elite </h1>
@@ -108,11 +111,11 @@
                 <h1 class=" text-white dark:text-[#171818] py-1 font-body text-lg "> Gas</h1>
               </div>
               <div class="flex ">
-                <h1 class=" text-2xl font-body font-bold text-white dark:text-[#171818] px-2" >Price Par Day :</h1>
+                <h1 class=" text-2xl font-body font-bold text-white dark:text-[#171818] px-2" >Price Per Day :</h1>
                 <h1 class=" text-white dark:text-[#171818] py-1 font-body text-lg "> $150</h1>
               </div>
               <div class="flex ">
-                <h1 class=" text-2xl font-body font-bold text-white dark:text-[#171818] px-2" >Price Par Hour :</h1>
+                <h1 class=" text-2xl font-body font-bold text-white dark:text-[#171818] px-2" >Price Per Hour :</h1>
                 <h1 class=" text-white dark:text-[#171818] py-1 font-body text-lg "> $10</h1>
               </div>
               <div class="flex ">
@@ -143,11 +146,15 @@
             </div>
 
           </div>
+          </div>
+          <div v-scrollanimation class="-translate-y-10 duration-200 h-10 w-10 left-[1470px] top-[20rem] rounded-sm shadow-lg  shadow-[#0000005c] absolute flex hover:bg-emerald-700 bg-emerald-500 ">
+                <font-awesome-icon class="text-white m-auto text-xl" icon="pen" />
+              </div>
         </div>
         <div :style="{ 'margin-left': sidebarWidth }" v-scrollanimation v-if="filter" class="flex w-[80%] left-[6.7rem]  -translate-y-10 duration-200 top-[13rem]  mx-auto justify-between dark:bg-[#171818] bg-gray-100  rounded absolute">
                          <div class="m-4">
                            <header class="border-b bg-gray-200 dark:bg-gray-800 border-[#10b981]">
-                            <h1 class="text dark:text-white text-[#171818] font-body font-bold py-2 px-4"> Vehicles Fuel </h1>
+                            <h1 class="text dark:text-white text-[#171818] font-body font-bold py-2 px-4"> Fuel </h1>
                            </header>
                            <div>
                              <div class="mx-4">
@@ -170,7 +177,7 @@
                          </div>
                          <div class="m-4">
                            <header class="border-b bg-gray-200 dark:bg-gray-800 border-[#10b981]">
-                            <h1 class="text dark:text-white text-[#171818] font-body font-bold py-2 px-4"> Vehicles Type </h1>
+                            <h1 class="text dark:text-white text-[#171818] font-body font-bold py-2 px-4"> Type </h1>
                            </header>
                            <div>
                              <div class="mx-4">
@@ -193,7 +200,7 @@
                          </div>
                          <div class="m-4">
                            <header class="border-b bg-gray-200 dark:bg-gray-800 border-[#10b981]">
-                            <h1 class="text dark:text-white text-[#171818] font-body font-bold py-2 px-4"> Vehicles Type </h1>
+                            <h1 class="text dark:text-white text-[#171818] font-body font-bold py-2 px-4"> Transmission </h1>
                            </header>
                            <div>
                              <div class="mx-4">
@@ -208,50 +215,58 @@
                          </div>
                          <div class="m-4">
                            <header class="border-b bg-gray-200 dark:bg-gray-800 border-[#10b981]">
+                            <h1 class="text dark:text-white text-[#171818] font-body font-bold py-2 px-4"> State </h1>
+                           </header>
+                           <div>
+                             <div class="mx-4">
+                               <input class="w-4 h-4" type="checkbox">
+                               <label class="text-lg text-[#171818] dark:text-white font-body px-2" for="">Available</label>
+                             </div>
+                             <div class="mx-4">
+                               <input class="w-4 h-4" type="checkbox">
+                               <label class="text-lg text-[#171818] dark:text-white font-body px-2" for="">Rented</label>
+                             </div>
+                             <div class="mx-4">
+                               <input class="w-4 h-4" type="checkbox">
+                               <label class="text-lg text-[#171818] dark:text-white font-body px-2" for="">Dead insurance card</label>
+                             </div>
+                             <div class="mx-4">
+                               <input class="w-4 h-4" type="checkbox">
+                               <label class="text-lg text-[#171818] dark:text-white font-body px-2" for="">Under Maintenance</label>
+                             </div>
+                             <div class="mx-4">
+                               <input class="w-4 h-4" type="checkbox">
+                               <label class="text-lg text-[#171818] dark:text-white font-body px-2" for="">Lost</label>
+                             </div>
+                           </div>
+                         </div>
+                         <div class="m-4">
+                           <header class="border-b bg-gray-200 dark:bg-gray-800 border-[#10b981]">
                             <h1 class="text dark:text-white text-[#171818] font-body font-bold py-2 px-4"> passengers </h1>
                            </header>
-                           <div class="flex">
-                             <div>
-                                 <div class="mx-4">
-                                   <input class="w-4 h-4" type="checkbox">
-                                   <label class="text-lg text-[#171818] dark:text-white font-body px-2" for="">+ 2</label>
-                                 </div>
-                                 <div class="mx-4">
-                               <input class="w-4 h-4" type="checkbox">
-                               <label class="text-lg text-[#171818] dark:text-white font-body px-2" for="">+ 4</label>
-                                 </div>
-                                 <div class="mx-4">
-                               <input class="w-4 h-4" type="checkbox">
-                               <label class="text-lg text-[#171818] dark:text-white font-body px-2" for="">+ 5</label>
-                                 </div>
-                             </div>
-                            <div>
-                                   <div class="mx-4">
-                                   <input class="w-4 h-4" type="checkbox">
-                                   <label class="text-lg text-[#171818] dark:text-white font-body px-2" for="">+ 7</label>
-                                 </div>
-                                 <div class="mx-4">
-                                   <input class="w-4 h-4" type="checkbox">
-                                   <label class="text-lg text-[#171818] dark:text-white font-body px-2" for="">+ 10</label>
-                                 </div>
-                                 <div class="mx-4">
-                                   <input class="w-4 h-4" type="checkbox">
-                                   <label class="text-lg text-[#171818] dark:text-white font-body px-2" for="">+ 12</label>
-                                 </div>
-                             </div> 
-                           </div>
+                           <select class=" w-full text-lg my-2 px-4 h-10 font-body font-bold" name="" id="">
+                             <option class=" font-body" value="2"> +2 </option>
+                             <option class=" font-body" value="4"> +4 </option>
+                             <option class=" font-body" value="5"> +5 </option>
+                             <option class=" font-body" value="7"> +7 </option>
+                             <option class=" font-body" value="10"> +10 </option>
+                             <option class=" font-body" value="12"> +12 </option>
+                           </select>
                          </div>
                          <div class=" w-[20%] mt-auto  mb-4">
                          <button class="bg-[#10b981] w-2/3 ml-16 rounded text-white py-2 px-4">Apply</button>
                          </div>
         </div>
        </div>
+        <AddVehicles />
   </div>
 </template>
 
 <script>
+import { mapMutations } from 'vuex';
 import SideBar from '../components/Sidebar.vue';
 import Nav from '../components/Nav.vue';
+import AddVehicles from '../components/AddVehicle.vue';
 import { sidebarWidth } from '../SideBar/sideBar';
 
 export default {
@@ -266,6 +281,7 @@ export default {
   components: {
     SideBar,
     Nav,
+    AddVehicles,
   },
   setup() {
     return { sidebarWidth };
@@ -276,6 +292,9 @@ export default {
     },
     isDark() {
       return this.$store.getters.Dark;
+    },
+    addVehicleModalShow() {
+      return this.$store.getters.addVehicleModalShow;
     },
   },
   mounted() {
@@ -297,6 +316,9 @@ export default {
         console.log(this.vrhicles);
       })
       .catch(err => console.log(err.message));
+  },
+  methods: {
+    ...mapMutations(['toggleAddVehicle']),
   },
 };
 </script>
