@@ -50,6 +50,7 @@
               </div>
     
         </div>
+          <Signature />
           </div>
     </div>
 </template>
@@ -58,12 +59,14 @@
 import { sidebarWidth } from '../SideBar/sideBar';
 import Nav from '../components/Nav.vue';
 import SideBar from '../components/Sidebar.vue';
+import Signature from '../components/Signature.vue';
 
 export default {
   name: 'Examine-',
   components: {
     Nav,
     SideBar,
+    Signature,
   },
   data() {
     return {

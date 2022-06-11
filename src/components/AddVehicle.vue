@@ -26,7 +26,7 @@
             </div>
           </div>
 
-          <form class="">
+          <form @submit="postDataAddVehicle">
             <div class="flex justify-between ">
             <div class="w-full mx-2">
              <div class="flex flex-wrap -mx-3 mb-6">
@@ -34,13 +34,13 @@
                 <label class="block uppercase tracking-wide text-gray-300 daek:text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
                   Name
                  </label>
-                 <input class="appearance-none block w-full dark:bg-gray-200 bg-gray-800 dark:text-gray-700 text-gray-200 border dark:border-gray-200 border-gray-700 rounded py-3 px-4 leading-tight focus:outline-none dark:focus:bg-white focus:border-gray-500" id="grid-first-name" type="text" placeholder="Name Offer">
+                 <input v-model="posts.name" name="name" class="appearance-none block w-full dark:bg-gray-200 bg-gray-800 dark:text-gray-700 text-gray-200 border dark:border-gray-200 border-gray-700 rounded py-3 px-4 leading-tight focus:outline-none dark:focus:bg-white focus:border-gray-500" id="grid-first-name" type="text" placeholder="Name Offer">
               </div>
               <div class="w-full md:w-1/2 px-3">
                 <label class="block uppercase tracking-wide text-gray-300 daek:text-gray-700 text-xs font-bold mb-2" for="grid-last-name">
                   Brand
                 </label>
-             <input class="appearance-none block w-full dark:bg-gray-200 bg-gray-800 dark:text-gray-700 text-gray-200 border dark:border-gray-200 border-gray-700 rounded py-3 px-4 leading-tight focus:outline-none dark:focus:bg-white focus:border-gray-500" id="grid-last-name" type="text" placeholder="Brand of Vehicle">
+             <input v-model="posts.brand" name="brand" class="appearance-none block w-full dark:bg-gray-200 bg-gray-800 dark:text-gray-700 text-gray-200 border dark:border-gray-200 border-gray-700 rounded py-3 px-4 leading-tight focus:outline-none dark:focus:bg-white focus:border-gray-500" id="grid-last-name" type="text" placeholder="Brand of Vehicle">
                 </div>
                 </div>
              <div class="flex flex-wrap -mx-3 mb-6">
@@ -48,7 +48,7 @@
                  <label class="block uppercase tracking-wide text-gray-300 daek:text-gray-700 text-xs font-bold mb-2" for="grid-password">
                    Model
                   </label>
-                 <input class="appearance-none block w-full dark:bg-gray-200 bg-gray-800 dark:text-gray-700 text-gray-200 border dark:border-gray-200 border-gray-700 rounded py-3 px-4 leading-tight focus:outline-none dark:focus:bg-white focus:border-gray-500" id="grid-userName" type="text" placeholder="Model of Vehicle">
+                 <input v-model="posts.model" name="model" class="appearance-none block w-full dark:bg-gray-200 bg-gray-800 dark:text-gray-700 text-gray-200 border dark:border-gray-200 border-gray-700 rounded py-3 px-4 leading-tight focus:outline-none dark:focus:bg-white focus:border-gray-500" id="grid-userName" type="text" placeholder="Model of Vehicle">
                 </div>
              </div>
              <div class="flex flex-wrap -mx-3 mb-6">
@@ -56,7 +56,7 @@
                  <label class="block uppercase tracking-wide text-gray-300 daek:text-gray-700 text-xs font-bold mb-2" for="grid-password">
                    Description
                   </label>
-                 <input class="appearance-none block w-full dark:bg-gray-200 bg-gray-800 dark:text-gray-700 text-gray-200 border dark:border-gray-200 border-gray-700 rounded py-3 px-4 leading-tight focus:outline-none dark:focus:bg-white focus:border-gray-500" id="grid-userName" type="text" placeholder="description">
+                 <input v-model="posts.description" name="description" class="appearance-none block w-full dark:bg-gray-200 bg-gray-800 dark:text-gray-700 text-gray-200 border dark:border-gray-200 border-gray-700 rounded py-3 px-4 leading-tight focus:outline-none dark:focus:bg-white focus:border-gray-500" id="grid-userName" type="text" placeholder="description">
                 </div>
              </div>
                <div class="flex flex-wrap -mx-3 mb-6">
@@ -64,7 +64,7 @@
                  <label class="block uppercase tracking-wide text-gray-300 daek:text-gray-700 text-xs font-bold mb-2" for="grid-password">
                  Registration Number
                   </label>
-                 <input class="appearance-none block w-full dark:bg-gray-200 bg-gray-800 dark:text-gray-700 text-gray-200 border dark:border-gray-200 border-gray-700 rounded py-3 px-4 leading-tight focus:outline-none dark:focus:bg-white focus:border-gray-500" id="grid-password" type="number" placeholder="000000-00-00">
+                 <input v-model="posts.registerN" name="registerN" class="appearance-none block w-full dark:bg-gray-200 bg-gray-800 dark:text-gray-700 text-gray-200 border dark:border-gray-200 border-gray-700 rounded py-3 px-4 leading-tight focus:outline-none dark:focus:bg-white focus:border-gray-500" id="grid-password" type="number" placeholder="000000-00-00">
                 </div>
              </div>
               <div class="flex flex-wrap -mx-3 mb-6">
@@ -72,13 +72,13 @@
                 <label class="block uppercase tracking-wide text-gray-300 daek:text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
                   Price Per Day
                  </label>
-                 <input class="appearance-none block w-full dark:bg-gray-200 bg-gray-800 dark:text-gray-700 text-gray-200 border dark:border-gray-200 border-gray-700 rounded py-3 px-4 leading-tight focus:outline-none dark:focus:bg-white focus:border-gray-500" id="grid-first-name" type="text" placeholder="Price in dollars">
+                 <input v-model="posts.PricePerDay" name="PricePerDay" class="appearance-none block w-full dark:bg-gray-200 bg-gray-800 dark:text-gray-700 text-gray-200 border dark:border-gray-200 border-gray-700 rounded py-3 px-4 leading-tight focus:outline-none dark:focus:bg-white focus:border-gray-500" id="grid-first-name" type="text" placeholder="Price in dollars">
               </div>
               <div class="w-full md:w-1/2 px-3">
                 <label class="block uppercase tracking-wide text-gray-300 daek:text-gray-700 text-xs font-bold mb-2" for="grid-last-name">
                   Price Per Hour
                 </label>
-             <input class="appearance-none block w-full dark:bg-gray-200 bg-gray-800 dark:text-gray-700 text-gray-200 border dark:border-gray-200 border-gray-700 rounded py-3 px-4 leading-tight focus:outline-none dark:focus:bg-white focus:border-gray-500" id="grid-last-name" type="text" placeholder="Price in dollars">
+             <input v-model="posts.PricePerHour" name="PricePerHour" class="appearance-none block w-full dark:bg-gray-200 bg-gray-800 dark:text-gray-700 text-gray-200 border dark:border-gray-200 border-gray-700 rounded py-3 px-4 leading-tight focus:outline-none dark:focus:bg-white focus:border-gray-500" id="grid-last-name" type="text" placeholder="Price in dollars">
                 </div>
                 </div>
                 
@@ -87,19 +87,19 @@
                   <label class="block uppercase tracking-wide text-gray-300 daek:text-gray-700 text-xs font-bold mb-2" for="grid-city">
                     Passengers
                   </label>
-                  <input class="appearance-none block w-full dark:bg-gray-200 bg-gray-800 dark:text-gray-700 text-gray-200 border dark:border-gray-200 border-gray-700 rounded py-3 px-4 leading-tight focus:outline-none dark:focus:bg-white focus:border-gray-500" id="grid-city" type="tel" placeholder="Passengers N">
+                  <input v-model="posts.passengers" name="passengers" class="appearance-none block w-full dark:bg-gray-200 bg-gray-800 dark:text-gray-700 text-gray-200 border dark:border-gray-200 border-gray-700 rounded py-3 px-4 leading-tight focus:outline-none dark:focus:bg-white focus:border-gray-500" id="grid-city" type="tel" placeholder="Passengers N">
                 </div>
                 <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
                   <label class="block uppercase tracking-wide text-gray-300 daek:text-gray-700 text-xs font-bold mb-2" for="grid-city">
                     Doors
                   </label>
-                  <input class="appearance-none block w-full dark:bg-gray-200 bg-gray-800 dark:text-gray-700 text-gray-200 border dark:border-gray-200 border-gray-700 rounded py-3 px-4 leading-tight focus:outline-none dark:focus:bg-white focus:border-gray-500" id="grid-city" type="tel" placeholder="Doors N">
+                  <input v-model="posts.doors" name="doors" class="appearance-none block w-full dark:bg-gray-200 bg-gray-800 dark:text-gray-700 text-gray-200 border dark:border-gray-200 border-gray-700 rounded py-3 px-4 leading-tight focus:outline-none dark:focus:bg-white focus:border-gray-500" id="grid-city" type="tel" placeholder="Doors N">
                 </div>
                 <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
                   <label class="block uppercase tracking-wide text-gray-300 daek:text-gray-700 text-xs font-bold mb-2" for="grid-city">
                     Bags
                   </label>
-                  <input class="appearance-none block w-full dark:bg-gray-200 bg-gray-800 dark:text-gray-700 text-gray-200 border dark:border-gray-200 border-gray-700 rounded py-3 px-4 leading-tight focus:outline-none dark:focus:bg-white focus:border-gray-500" id="grid-city" type="tel" placeholder="Bags N">
+                  <input v-model="posts.bags" name="bags" class="appearance-none block w-full dark:bg-gray-200 bg-gray-800 dark:text-gray-700 text-gray-200 border dark:border-gray-200 border-gray-700 rounded py-3 px-4 leading-tight focus:outline-none dark:focus:bg-white focus:border-gray-500" id="grid-city" type="tel" placeholder="Bags N">
                 </div>
              </div>
              <div class="flex flex-wrap -mx-3 mb-6">
@@ -108,15 +108,15 @@
                  Depots
                   </label>
                 <div class="flex flex-wrap justify-start">
-                   <input type="radio" id="" class="h-4 w-4 outline-none my-auto mx-4" name="depot" value="">
+                   <input type="radio" v-model="posts.depot" id="" class="h-4 w-4 outline-none my-auto mx-4" name="depot" value="alger">
                    <label class="block uppercase tracking-wide text-gray-300 text-sm  daek:text-gray-700 my-auto">Alger</label>
-                   <input type="radio" id="" class="h-4 w-4 outline-none my-auto mx-4" name="depot" value="CSS">
+                   <input type="radio" v-model="posts.depot" id="" class="h-4 w-4 outline-none my-auto mx-4" name="depot" value="eloued">
                    <label class="block uppercase tracking-wide text-gray-300 text-sm  daek:text-gray-700 my-auto">Eloued</label>
-                   <input type="radio" id="" class="h-4 w-4 outline-none my-auto mx-4" name="depot" value="">
+                   <input type="radio" v-model="posts.depot" id="" class="h-4 w-4 outline-none my-auto mx-4" name="depot" value="mila">
                    <label class="block uppercase tracking-wide text-gray-300 text-sm  daek:text-gray-700 my-auto">Mila</label>
-                   <input type="radio" id="" class="h-4 w-4 outline-none my-auto mx-4" name="depot" value="">
+                   <input type="radio" v-model="posts.depot" id="" class="h-4 w-4 outline-none my-auto mx-4" name="depot" value="oran">
                    <label class="block uppercase tracking-wide text-gray-300 text-sm  daek:text-gray-700 my-auto">Oran</label>  
-                   <input type="radio" id="" class="h-4 w-4 outline-none my-auto mx-4" name="depot" value="">
+                   <input type="radio" v-model="posts.depot" id="" class="h-4 w-4 outline-none my-auto mx-4" name="depot" value="guelma">
                    <label class="block uppercase tracking-wide text-gray-300 text-sm  daek:text-gray-700 my-auto">Guelma</label>                   
                  </div>
                 </div>
@@ -140,7 +140,7 @@
                           <p class="pt-1 text-sm tracking-wider text-gray-400 group-hover:text-gray-600">
                             Attach a file</p>
                          </div>
-                        <input type="file" class="opacity-0 bg-gray-200" />
+                        <input  name="img" type="file" class="opacity-0 bg-gray-200" />
                        </label>
                    </div>
                   </div>
@@ -151,13 +151,13 @@
                 <label class="block uppercase tracking-wide text-gray-300 daek:text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
                   Color
                  </label>
-                 <input class="appearance-none block w-full dark:bg-gray-200 bg-gray-800 dark:text-gray-700 text-gray-200 border dark:border-gray-200 border-gray-700 rounded py-3 px-4 leading-tight focus:outline-none dark:focus:bg-white focus:border-gray-500" id="grid-first-name" type="text" placeholder="Color of Vehicle">
+                 <input v-model="posts.color" name="color" class="appearance-none block w-full dark:bg-gray-200 bg-gray-800 dark:text-gray-700 text-gray-200 border dark:border-gray-200 border-gray-700 rounded py-3 px-4 leading-tight focus:outline-none dark:focus:bg-white focus:border-gray-500" id="grid-first-name" type="text" placeholder="Color of Vehicle">
               </div>
               <div class="w-full md:w-1/2 px-3">
                 <label class="block uppercase tracking-wide text-gray-300 daek:text-gray-700 text-xs font-bold mb-2" for="grid-last-name">
                   Year
                 </label>
-             <input class="appearance-none block w-full dark:bg-gray-200 bg-gray-800 dark:text-gray-700 text-gray-200 border dark:border-gray-200 border-gray-700 rounded py-3 px-4 leading-tight focus:outline-none dark:focus:bg-white focus:border-gray-500" id="grid-last-name" type="text" placeholder="Year of Vehicle">
+             <input v-model="posts.year" name="year" class="appearance-none block w-full dark:bg-gray-200 bg-gray-800 dark:text-gray-700 text-gray-200 border dark:border-gray-200 border-gray-700 rounded py-3 px-4 leading-tight focus:outline-none dark:focus:bg-white focus:border-gray-500" id="grid-last-name" type="text" placeholder="Year of Vehicle">
                 </div>
                 </div>
              <div class="flex flex-wrap -mx-3 mb-10">
@@ -166,9 +166,9 @@
                  Transmission
                   </label>
                 <div class="flex my-auto flex-wrap mt-4 justify-start">
-                   <input type="radio" id="" class="h-4 w-4 outline-none my-auto mx-4" name="transmission" value="">
+                   <input type="radio" v-model="posts.transmission"  class="h-4 w-4 outline-none my-auto mx-4" name="transmission" value="0">
                    <label class="block uppercase tracking-wide text-gray-300 text-sm  daek:text-gray-700 my-auto">Manual</label>
-                   <input type="radio" id="" class="h-4 w-4 outline-none my-auto mx-4" name="transmission" value="CSS">
+                   <input type="radio" v-model="posts.transmission"  class="h-4 w-4 outline-none my-auto mx-4" name="transmission" value="1">
                    <label class="block uppercase tracking-wide text-gray-300 text-sm  daek:text-gray-700 my-auto">Automatic</label>                  
                  </div>
                 </div>
@@ -180,17 +180,17 @@
                   </label>
                 <div class="">
                     <div class="flex flex-wrap justify-start">
-                   <input type="checkbox" id="" class="h-4 w-4 outline-none my-auto mx-3 mb-1" name="depot" value="">
+                   <input type="checkbox" v-model="posts.seconds" class="h-4 w-4 outline-none my-auto mx-3 mb-1" name="seconds" value="">
                    <label class="block uppercase tracking-wide text-gray-300 text-sm mb-1  daek:text-gray-700 my-auto">Bluetooth</label>
-                   <input type="checkbox" id="" class="h-4 w-4 outline-none my-auto mx-3 mb-1" name="depot" value="">
+                   <input type="checkbox" v-model="posts.seconds" class="h-4 w-4 outline-none my-auto mx-3 mb-1" name="seconds" value="">
                    <label class="block uppercase tracking-wide text-gray-300 text-sm mb-1  daek:text-gray-700 my-auto"> Cruise Control</label>
                     </div>
                     <div class="flex flex-wrap justify-start">
-                   <input type="checkbox" id="" class="h-4 w-4 outline-none my-auto mx-3 mb-1" name="depot" value="">
+                   <input type="checkbox" v-model="posts.seconds" class="h-4 w-4 outline-none my-auto mx-3 mb-1" name="seconds" value="">
                    <label class="block uppercase tracking-wide text-gray-300 text-sm mb-1  daek:text-gray-700 my-auto">Am/FM Stereo Radio</label>
-                   <input type="checkbox" id="" class="h-4 w-4 outline-none my-auto mx-3 mb-1" name="depot" value="">
+                   <input type="checkbox" v-model="posts.seconds" class="h-4 w-4 outline-none my-auto mx-3 mb-1" name="seconds" value="">
                    <label class="block uppercase tracking-wide text-gray-300 text-sm mb-1 pr-8 daek:text-gray-700 my-auto"> Air Conditioning </label> 
-                   <input type="checkbox" id="" class="h-4 w-4 outline-none my-auto mx-3 mb-1" name="depot" value="">
+                   <input type="checkbox" v-model="posts.seconds" class="h-4 w-4 outline-none my-auto mx-3 mb-1" name="seconds" value="">
                    <label class="block uppercase tracking-wide text-gray-300 text-sm mb-1 pr-8 daek:text-gray-700 my-auto"> Leather Interior </label>                  
                     </div>
                     
@@ -228,10 +228,23 @@ export default {
         confirm_password: 'required|confirmed:@password',
         // tos: 'required',
       },
-      schemaLogin: {
-        password: 'required|min:3|max:100',
-        email: 'required|min:3|max:100|email',
-        remember: '',
+      posts: {
+        name: '',
+        brand: '',
+        model: '',
+        description: '',
+        registerN: '',
+        pricePerDay: null,
+        pricePerHour: null,
+        passengers: null,
+        doors: null,
+        bags: null,
+        depot: '',
+        color: '',
+        year: '',
+        transmission: '',
+        seconds: [],
+        img: '',
       },
     };
   },
@@ -245,10 +258,7 @@ export default {
   },
   methods: {
     ...mapMutations(['toggleAddVehicle']),
-    register(values) {
-      console.log(values);
-    },
-    login(values) {
+    registpostDataAddVehicleer(values) {
       console.log(values);
     },
   },

@@ -28,6 +28,8 @@ module.exports = {
     'max-len': 'off',
     'global-require': 'off',
     'no-multi-assign': 'off',
+    'new-cap': 'off',
+    'prefer-arrow-callback': 'off',
   },
   overrides: [
     {

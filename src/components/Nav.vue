@@ -122,16 +122,12 @@ export default {
       navigator.geolocation.getCurrentPosition(async position => {
         const lat = position.coords.latitude;
         const log = position.coords.longitude;
-        console.log(lat, log);
         const baseURL = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${log}&units=metric&appid=6c61208811cbfeec3dcf61084ad82054`;
-        console.log(baseURL);
         const data = await fetch(baseURL);
         const weather = await data.json();
-        console.log(weather);
         this.url = `http://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png`;
         this.temperature = weather.main.temp;
         this.iconweather = weather.weather[0].icon;
-        // console.log(this.iconweather);
       });
     },
     getTime() {

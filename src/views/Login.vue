@@ -96,10 +96,10 @@ export default {
     async postDataLogIN(e) {
       const role = this.posts.selectedTab;
       const baseURL = `http://localhost:3000/api/${role}/login`;
-      console.log(baseURL);
+      // console.log(baseURL);
       this.axios.post(baseURL, this.posts)
         .then((result) => {
-          console.warn(result);
+          // console.warn(result);
           this.$router.push('/controlPanel');
           localStorage.setItem('auth-token', result.data.token);
           // console.log(result.data.profil.userName);

@@ -65,7 +65,7 @@
                  <img :src="`data:image/png;base64,${vehicle.picture}`" alt="">
               </div>
               <div class="absolute rounded-b flex  w-full h-12 bg-[#10b981]">
-                <h1 class="text-white my-auto font-body font-bold mx-4 text-2xl">{{ vehicle.brand }} 2021</h1>
+                <h1 class="text-white my-auto font-body font-bold mx-4 text-xl">{{ vehicle.brand }} 2021</h1>
                 <button class=" h-10 my-auto ml-auto mr-4 rounded text-sm font-body font-bold text-[#212529] bg-white p-2"> SHOW MORE </button>
               </div>
             </div>
@@ -308,12 +308,10 @@ export default {
           if (!set.has(car.description)) {
             set.add(car.description);
             Output.push(car);
-            console.log(data);
           }
         });
 
         this.vehicles = Output;
-        console.log(this.vrhicles);
       })
       .catch(err => console.log(err.message));
   },

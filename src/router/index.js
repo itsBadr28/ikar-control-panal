@@ -8,6 +8,7 @@ import Customers from '../views/Customers.vue';
 import Staffs from '../views/Staffs.vue';
 import Vehicles from '../views/Vehicles.vue';
 import Examine from '../views/Examine.vue';
+import testSignature from '../views/testPdf.vue';
 
 const routes = [
   {
@@ -54,6 +55,11 @@ const routes = [
     path: '/examine',
     name: 'Examine',
     component: Examine,
+  },
+  {
+    path: '/test',
+    name: 'testSignature',
+    component: testSignature,
   },
 ];
 
