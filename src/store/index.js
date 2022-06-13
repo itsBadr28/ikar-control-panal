@@ -20,6 +20,7 @@ export default createStore({
     dropDownOpen: false,
     userProfileModalShow: false,
     addVehicleModalShow: false,
+    updateVehicleModalShow: false,
   },
   getters: {
     Dark: (state) => state.Dark,
@@ -29,6 +30,7 @@ export default createStore({
     dropDownOpen: (state) => state.dropDownOpen,
     tenantProfileModalShow: (state) => state.tenantProfileModalShow,
     addVehicleModalShow: (state) => state.addVehicleModalShow,
+    updateVehicleModalShow: (state) => state.updateVehicleModalShow,
   },
   mutations: {
     tiggleIsDark: (state) => {
@@ -56,6 +58,9 @@ export default createStore({
     },
     toggleAddVehicle: (state) => {
       state.addVehicleModalShow = !state.addVehicleModalShow;
+    },
+    toggleUpdateVehicle: (state) => {
+      state.updateVehicleModalShow = !state.updateVehicleModalShow;
     },
   },
 });

@@ -26,7 +26,7 @@
             </div>
           </div>
 
-          <form @submit="postDataAddVehicle">
+          <form @submit="postDataAddVehicle" method="post" enctype="multipart/form-data" action="http://localhost:3000/api/vehicles" >
             <div class="flex justify-between ">
             <div class="w-full mx-2">
              <div class="flex flex-wrap -mx-3 mb-6">
@@ -64,7 +64,7 @@
                  <label class="block uppercase tracking-wide text-gray-300 daek:text-gray-700 text-xs font-bold mb-2" for="grid-password">
                  Registration Number
                   </label>
-                 <input v-model="posts.registerN" name="registerN" class="appearance-none block w-full dark:bg-gray-200 bg-gray-800 dark:text-gray-700 text-gray-200 border dark:border-gray-200 border-gray-700 rounded py-3 px-4 leading-tight focus:outline-none dark:focus:bg-white focus:border-gray-500" id="grid-password" type="number" placeholder="000000-00-00">
+                 <input v-model="posts.matricule" name="matricule" class="appearance-none block w-full dark:bg-gray-200 bg-gray-800 dark:text-gray-700 text-gray-200 border dark:border-gray-200 border-gray-700 rounded py-3 px-4 leading-tight focus:outline-none dark:focus:bg-white focus:border-gray-500" type="number" placeholder="000000-00-00">
                 </div>
              </div>
               <div class="flex flex-wrap -mx-3 mb-6">
@@ -72,13 +72,13 @@
                 <label class="block uppercase tracking-wide text-gray-300 daek:text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
                   Price Per Day
                  </label>
-                 <input v-model="posts.PricePerDay" name="PricePerDay" class="appearance-none block w-full dark:bg-gray-200 bg-gray-800 dark:text-gray-700 text-gray-200 border dark:border-gray-200 border-gray-700 rounded py-3 px-4 leading-tight focus:outline-none dark:focus:bg-white focus:border-gray-500" id="grid-first-name" type="text" placeholder="Price in dollars">
+                 <input v-model="posts.pricePerDay" name="pricePerDay" class="appearance-none block w-full dark:bg-gray-200 bg-gray-800 dark:text-gray-700 text-gray-200 border dark:border-gray-200 border-gray-700 rounded py-3 px-4 leading-tight focus:outline-none dark:focus:bg-white focus:border-gray-500"  type="number" placeholder="Price in dollars">
               </div>
               <div class="w-full md:w-1/2 px-3">
                 <label class="block uppercase tracking-wide text-gray-300 daek:text-gray-700 text-xs font-bold mb-2" for="grid-last-name">
                   Price Per Hour
                 </label>
-             <input v-model="posts.PricePerHour" name="PricePerHour" class="appearance-none block w-full dark:bg-gray-200 bg-gray-800 dark:text-gray-700 text-gray-200 border dark:border-gray-200 border-gray-700 rounded py-3 px-4 leading-tight focus:outline-none dark:focus:bg-white focus:border-gray-500" id="grid-last-name" type="text" placeholder="Price in dollars">
+             <input v-model="posts.pricePerHour" name="pricePerHour" class="appearance-none block w-full dark:bg-gray-200 bg-gray-800 dark:text-gray-700 text-gray-200 border dark:border-gray-200 border-gray-700 rounded py-3 px-4 leading-tight focus:outline-none dark:focus:bg-white focus:border-gray-500"  type="number" placeholder="Price in dollars">
                 </div>
                 </div>
                 
@@ -87,19 +87,19 @@
                   <label class="block uppercase tracking-wide text-gray-300 daek:text-gray-700 text-xs font-bold mb-2" for="grid-city">
                     Passengers
                   </label>
-                  <input v-model="posts.passengers" name="passengers" class="appearance-none block w-full dark:bg-gray-200 bg-gray-800 dark:text-gray-700 text-gray-200 border dark:border-gray-200 border-gray-700 rounded py-3 px-4 leading-tight focus:outline-none dark:focus:bg-white focus:border-gray-500" id="grid-city" type="tel" placeholder="Passengers N">
+                  <input v-model="posts.placeNumber" name="placeNumber" class="appearance-none block w-full dark:bg-gray-200 bg-gray-800 dark:text-gray-700 text-gray-200 border dark:border-gray-200 border-gray-700 rounded py-3 px-4 leading-tight focus:outline-none dark:focus:bg-white focus:border-gray-500" id="grid-city" type="number" placeholder="Passengers N">
                 </div>
                 <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
                   <label class="block uppercase tracking-wide text-gray-300 daek:text-gray-700 text-xs font-bold mb-2" for="grid-city">
                     Doors
                   </label>
-                  <input v-model="posts.doors" name="doors" class="appearance-none block w-full dark:bg-gray-200 bg-gray-800 dark:text-gray-700 text-gray-200 border dark:border-gray-200 border-gray-700 rounded py-3 px-4 leading-tight focus:outline-none dark:focus:bg-white focus:border-gray-500" id="grid-city" type="tel" placeholder="Doors N">
+                  <input v-model="posts.doorsNumber" name="doorsNumber" class="appearance-none block w-full dark:bg-gray-200 bg-gray-800 dark:text-gray-700 text-gray-200 border dark:border-gray-200 border-gray-700 rounded py-3 px-4 leading-tight focus:outline-none dark:focus:bg-white focus:border-gray-500" id="grid-city" type="number" placeholder="Doors N">
                 </div>
                 <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
                   <label class="block uppercase tracking-wide text-gray-300 daek:text-gray-700 text-xs font-bold mb-2" for="grid-city">
                     Bags
                   </label>
-                  <input v-model="posts.bags" name="bags" class="appearance-none block w-full dark:bg-gray-200 bg-gray-800 dark:text-gray-700 text-gray-200 border dark:border-gray-200 border-gray-700 rounded py-3 px-4 leading-tight focus:outline-none dark:focus:bg-white focus:border-gray-500" id="grid-city" type="tel" placeholder="Bags N">
+                  <input v-model="posts.bagsNumber" name="bagsNumber" class="appearance-none block w-full dark:bg-gray-200 bg-gray-800 dark:text-gray-700 text-gray-200 border dark:border-gray-200 border-gray-700 rounded py-3 px-4 leading-tight focus:outline-none dark:focus:bg-white focus:border-gray-500" id="grid-city" type="number" placeholder="Bags N">
                 </div>
              </div>
              <div class="flex flex-wrap -mx-3 mb-6">
@@ -108,25 +108,42 @@
                  Depots
                   </label>
                 <div class="flex flex-wrap justify-start">
-                   <input type="radio" v-model="posts.depot" id="" class="h-4 w-4 outline-none my-auto mx-4" name="depot" value="alger">
+                   <input type="radio" v-model="posts.deposit" id="" class="h-4 w-4 outline-none my-auto mx-4" name="deposit" value="Alger">
                    <label class="block uppercase tracking-wide text-gray-300 text-sm  daek:text-gray-700 my-auto">Alger</label>
-                   <input type="radio" v-model="posts.depot" id="" class="h-4 w-4 outline-none my-auto mx-4" name="depot" value="eloued">
+                   <input type="radio" v-model="posts.deposit" id="" class="h-4 w-4 outline-none my-auto mx-4" name="deposit" value="Eloued">
                    <label class="block uppercase tracking-wide text-gray-300 text-sm  daek:text-gray-700 my-auto">Eloued</label>
-                   <input type="radio" v-model="posts.depot" id="" class="h-4 w-4 outline-none my-auto mx-4" name="depot" value="mila">
+                   <input type="radio" v-model="posts.deposit" id="" class="h-4 w-4 outline-none my-auto mx-4" name="deposit" value="Mila">
                    <label class="block uppercase tracking-wide text-gray-300 text-sm  daek:text-gray-700 my-auto">Mila</label>
-                   <input type="radio" v-model="posts.depot" id="" class="h-4 w-4 outline-none my-auto mx-4" name="depot" value="oran">
+                   <input type="radio" v-model="posts.deposit" id="" class="h-4 w-4 outline-none my-auto mx-4" name="deposit" value="Oran">
                    <label class="block uppercase tracking-wide text-gray-300 text-sm  daek:text-gray-700 my-auto">Oran</label>  
-                   <input type="radio" v-model="posts.depot" id="" class="h-4 w-4 outline-none my-auto mx-4" name="depot" value="guelma">
+                   <input type="radio" v-model="posts.deposit" id="" class="h-4 w-4 outline-none my-auto mx-4" name="deposit" value="Guelma">
                    <label class="block uppercase tracking-wide text-gray-300 text-sm  daek:text-gray-700 my-auto">Guelma</label>                   
                  </div>
                 </div>
              </div>
-             
+              <div class="flex flex-wrap -mx-3 mb-6">
+                <div class="w-full px-3">
+                    <label class="block uppercase tracking-wide text-gray-300 daek:text-gray-700 text-xs font-bold mb-2" for="grid-password">
+                 Fuel
+                  </label>
+                <div class="flex flex-wrap justify-start">
+                   <input type="radio" v-model="posts.fule" id="" class="h-4 w-4 outline-none my-auto mx-4" name="fuelType" value="gaz">
+                   <label class="block uppercase tracking-wide text-gray-300 text-sm  daek:text-gray-700 my-auto">Gaz</label>
+                   <input type="radio" v-model="posts.fule" id="" class="h-4 w-4 outline-none my-auto mx-4" name="fuelType" value="petrol">
+                   <label class="block uppercase tracking-wide text-gray-300 text-sm  daek:text-gray-700 my-auto">Petrol</label>
+                   <input type="radio" v-model="posts.fule" id="" class="h-4 w-4 outline-none my-auto mx-4" name="fuelType" value="electric">
+                   <label class="block uppercase tracking-wide text-gray-300 text-sm  daek:text-gray-700 my-auto">Electric</label>
+                   <input type="radio" v-model="posts.fule" id="" class="h-4 w-4 outline-none my-auto mx-4" name="fuelType" value="mazot">
+                   <label class="block uppercase tracking-wide text-gray-300 text-sm  daek:text-gray-700 my-auto">Mazot</label>                  
+                 </div>
+                </div>
+             </div>
             </div>
             <!-- Upload img -->
             <div class="w-full ml-4">
               <div class="flex justify-center mb-[26px]">
-                <div class="max-w-2xl mt-6 rounded-lg shadow-xl dark:bg-gray-200 bg-gray-800 dark:text-gray-700 text-gray-200 border dark:border-gray-200 border-gray-700">
+                 <input  name="picture" type="file"  class=" bg-gray-200" />
+                <!-- <div class="max-w-2xl mt-6 rounded-lg shadow-xl dark:bg-gray-200 bg-gray-800 dark:text-gray-700 text-gray-200 border dark:border-gray-200 border-gray-700">
                   <div class="m-4">
                     <label class="inline-block mb-2 dark:text-gray-500 text-gray-200">File Upload</label>
                     <div div class="flex items-center justify-center w-full">
@@ -140,11 +157,11 @@
                           <p class="pt-1 text-sm tracking-wider text-gray-400 group-hover:text-gray-600">
                             Attach a file</p>
                          </div>
-                        <input  name="img" type="file" class="opacity-0 bg-gray-200" />
+                        <input  name="picture" type="file"  class="opacity-0 bg-gray-200" />
                        </label>
                    </div>
                   </div>
-            </div>
+            </div> -->
             </div>
              <div class="flex flex-wrap -mx-3 mb-6">
               <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
@@ -157,7 +174,7 @@
                 <label class="block uppercase tracking-wide text-gray-300 daek:text-gray-700 text-xs font-bold mb-2" for="grid-last-name">
                   Year
                 </label>
-             <input v-model="posts.year" name="year" class="appearance-none block w-full dark:bg-gray-200 bg-gray-800 dark:text-gray-700 text-gray-200 border dark:border-gray-200 border-gray-700 rounded py-3 px-4 leading-tight focus:outline-none dark:focus:bg-white focus:border-gray-500" id="grid-last-name" type="text" placeholder="Year of Vehicle">
+             <input v-model="posts.releaseYear" name="releaseYear" class="appearance-none block w-full dark:bg-gray-200 bg-gray-800 dark:text-gray-700 text-gray-200 border dark:border-gray-200 border-gray-700 rounded py-3 px-4 leading-tight focus:outline-none dark:focus:bg-white focus:border-gray-500"  type="number" placeholder="Year of Vehicle">
                 </div>
                 </div>
              <div class="flex flex-wrap -mx-3 mb-10">
@@ -166,10 +183,27 @@
                  Transmission
                   </label>
                 <div class="flex my-auto flex-wrap mt-4 justify-start">
-                   <input type="radio" v-model="posts.transmission"  class="h-4 w-4 outline-none my-auto mx-4" name="transmission" value="0">
+                   <input type="radio" v-model="posts.isAutomatic"  class="h-4 w-4 outline-none my-auto mx-4" name="isAutomatic" value="">
                    <label class="block uppercase tracking-wide text-gray-300 text-sm  daek:text-gray-700 my-auto">Manual</label>
-                   <input type="radio" v-model="posts.transmission"  class="h-4 w-4 outline-none my-auto mx-4" name="transmission" value="1">
+                   <input type="radio" v-model="posts.isAutomatic"  class="h-4 w-4 outline-none my-auto mx-4" name="isAutomatic" value="true">
                    <label class="block uppercase tracking-wide text-gray-300 text-sm  daek:text-gray-700 my-auto">Automatic</label>                  
+                 </div>
+                </div>
+             </div>
+             <div class="flex flex-wrap -mx-3 mb-6">
+                <div class="w-full px-3">
+                    <label class="block uppercase tracking-wide text-gray-300 daek:text-gray-700 text-xs font-bold mb-2" for="grid-password">
+                 Type
+                  </label>
+                <div class="flex flex-wrap justify-start">
+                   <input type="radio" v-model="posts.type" id="" class="h-4 w-4 outline-none my-auto mx-4" name="type" value="Cars">
+                   <label class="block uppercase tracking-wide text-gray-300 text-sm  daek:text-gray-700 my-auto">Cars</label>
+                   <input type="radio" v-model="posts.type" id="" class="h-4 w-4 outline-none my-auto mx-4" name="type" value="Suvs">
+                   <label class="block uppercase tracking-wide text-gray-300 text-sm  daek:text-gray-700 my-auto">Suvs</label>
+                   <input type="radio" v-model="posts.type" id="" class="h-4 w-4 outline-none my-auto mx-4" name="type" value="Vans">
+                   <label class="block uppercase tracking-wide text-gray-300 text-sm  daek:text-gray-700 my-auto">Vans</label>
+                   <input type="radio" v-model="posts.type" id="" class="h-4 w-4 outline-none my-auto mx-4" name="type" value="Truck">
+                   <label class="block uppercase tracking-wide text-gray-300 text-sm  daek:text-gray-700 my-auto">Trucks</label>               
                  </div>
                 </div>
              </div>
@@ -180,17 +214,17 @@
                   </label>
                 <div class="">
                     <div class="flex flex-wrap justify-start">
-                   <input type="checkbox" v-model="posts.seconds" class="h-4 w-4 outline-none my-auto mx-3 mb-1" name="seconds" value="">
+                   <input type="checkbox" v-model="posts.hasbluetooth" class="h-4 w-4 outline-none my-auto mx-3 mb-1" name="hasBluetooth" value="1">
                    <label class="block uppercase tracking-wide text-gray-300 text-sm mb-1  daek:text-gray-700 my-auto">Bluetooth</label>
-                   <input type="checkbox" v-model="posts.seconds" class="h-4 w-4 outline-none my-auto mx-3 mb-1" name="seconds" value="">
+                   <input type="checkbox" v-model="posts.hascruisecontrol" class="h-4 w-4 outline-none my-auto mx-3 mb-1" name="hasAMFMstereoRadio" value="1">
                    <label class="block uppercase tracking-wide text-gray-300 text-sm mb-1  daek:text-gray-700 my-auto"> Cruise Control</label>
                     </div>
                     <div class="flex flex-wrap justify-start">
-                   <input type="checkbox" v-model="posts.seconds" class="h-4 w-4 outline-none my-auto mx-3 mb-1" name="seconds" value="">
+                   <input type="checkbox" v-model="posts.hasAMFMstereoRadio" class="h-4 w-4 outline-none my-auto mx-3 mb-1" name="hasairconditioning" value="1">
                    <label class="block uppercase tracking-wide text-gray-300 text-sm mb-1  daek:text-gray-700 my-auto">Am/FM Stereo Radio</label>
-                   <input type="checkbox" v-model="posts.seconds" class="h-4 w-4 outline-none my-auto mx-3 mb-1" name="seconds" value="">
+                   <input type="checkbox" v-model="posts.hasairconditioning" class="h-4 w-4 outline-none my-auto mx-3 mb-1" name="hasleatherInterior" value="1">
                    <label class="block uppercase tracking-wide text-gray-300 text-sm mb-1 pr-8 daek:text-gray-700 my-auto"> Air Conditioning </label> 
-                   <input type="checkbox" v-model="posts.seconds" class="h-4 w-4 outline-none my-auto mx-3 mb-1" name="seconds" value="">
+                   <input type="checkbox" v-model="posts.hasleatherInterior" class="h-4 w-4 outline-none my-auto mx-3 mb-1" name="LeatherInterior" value="1">
                    <label class="block uppercase tracking-wide text-gray-300 text-sm mb-1 pr-8 daek:text-gray-700 my-auto"> Leather Interior </label>                  
                     </div>
                     
@@ -213,7 +247,7 @@
 import { mapMutations, mapState } from 'vuex';
 
 export default {
-  name: 'addStaff',
+  name: 'addVehicle',
   data() {
     return {
       schema: {
@@ -232,19 +266,25 @@ export default {
         name: '',
         brand: '',
         model: '',
+        type: '',
         description: '',
-        registerN: '',
-        pricePerDay: null,
-        pricePerHour: null,
-        passengers: null,
-        doors: null,
-        bags: null,
-        depot: '',
+        matricule: '',
+        pricePerDay: '',
+        pricePerHour: '',
+        placeNumber: '',
+        doorsNumber: '',
+        bagsNumber: '',
+        deposit: '',
+        fule: '',
         color: '',
-        year: '',
-        transmission: '',
-        seconds: [],
-        img: '',
+        releaseYear: '',
+        isAutomatic: '',
+        hasbluetooth: null,
+        hascruisecontrol: null,
+        hasAMFMstereoRadio: null,
+        hasairconditioning: null,
+        hasleatherInterior: null,
+        picture: '',
       },
     };
   },
@@ -258,9 +298,23 @@ export default {
   },
   methods: {
     ...mapMutations(['toggleAddVehicle']),
-    registpostDataAddVehicleer(values) {
-      console.log(values);
-    },
+    // onFileChange(e) {
+    //   const files = e.target.files || e.dataTransfer.files;
+    //   if (!files.length) {
+    //     return;
+    //   }
+    //   this.createImage(files[0]);
+    // },
+    // postDataAddVehicle(e, values) {
+    //   e.preventDefault();
+    //   // values.array.forEach(element => {
+    //   //   console.log(element);
+    //   // });
+    //   const inputs = document.querySelectorAll('input');
+    //   inputs.forEach(input => {
+    //     console.log(input.value);
+    //   });
+    // },
   },
 };
 </script>

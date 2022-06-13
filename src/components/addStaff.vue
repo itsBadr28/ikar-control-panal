@@ -26,7 +26,7 @@
             </div>
           </div>
 
-          <form class="">
+          <form @submit="postDataAddStaff" method="post" enctype="multipart/form-data" action="http://localhost:3000/api/users">
             <div class="flex justify-between ">
             <div class="w-full mx-2">
              <div class="flex flex-wrap -mx-3 mb-6">
@@ -35,14 +35,14 @@
                 <label class="block uppercase tracking-wide text-gray-300 daek:text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
                   First Name
                  </label>
-                 <input class="appearance-none block w-full dark:bg-gray-200 bg-gray-800 dark:text-gray-700 text-gray-200 border dark:border-gray-200 border-gray-700 rounded py-3 px-4 leading-tight focus:outline-none dark:focus:bg-white focus:border-gray-500" id="grid-first-name" type="text" placeholder="Jane">
+                 <input v-model="posts.firstName" name="firstName" class="appearance-none block w-full dark:bg-gray-200 bg-gray-800 dark:text-gray-700 text-gray-200 border dark:border-gray-200 border-gray-700 rounded py-3 px-4 leading-tight focus:outline-none dark:focus:bg-white focus:border-gray-500" id="grid-first-name" type="text" placeholder="Jane">
               </div>
               <!-- last Name -->
               <div class="w-full md:w-1/2 px-3">
                 <label class="block uppercase tracking-wide text-gray-300 daek:text-gray-700 text-xs font-bold mb-2" for="grid-last-name">
                   Last Name
                 </label>
-             <input class="appearance-none block w-full dark:bg-gray-200 bg-gray-800 dark:text-gray-700 text-gray-200 border dark:border-gray-200 border-gray-700 rounded py-3 px-4 leading-tight focus:outline-none dark:focus:bg-white focus:border-gray-500" id="grid-last-name" type="text" placeholder="Doe">
+             <input v-model="posts.lastName" name="lastName" class="appearance-none block w-full dark:bg-gray-200 bg-gray-800 dark:text-gray-700 text-gray-200 border dark:border-gray-200 border-gray-700 rounded py-3 px-4 leading-tight focus:outline-none dark:focus:bg-white focus:border-gray-500" id="grid-last-name" type="text" placeholder="Doe">
                 </div>
                 </div>
              <!-- user Name -->
@@ -51,7 +51,7 @@
                  <label class="block uppercase tracking-wide text-gray-300 daek:text-gray-700 text-xs font-bold mb-2" for="grid-password">
                    User Name
                   </label>
-                 <input class="appearance-none block w-full dark:bg-gray-200 bg-gray-800 dark:text-gray-700 text-gray-200 border dark:border-gray-200 border-gray-700 rounded py-3 px-4 leading-tight focus:outline-none dark:focus:bg-white focus:border-gray-500" id="grid-userName" type="text" placeholder="User Name">
+                 <input v-model="posts.userName" name="userName" class="appearance-none block w-full dark:bg-gray-200 bg-gray-800 dark:text-gray-700 text-gray-200 border dark:border-gray-200 border-gray-700 rounded py-3 px-4 leading-tight focus:outline-none dark:focus:bg-white focus:border-gray-500" type="text" placeholder="User Name">
                 </div>
              </div>
                 <!-- email -->
@@ -60,7 +60,7 @@
                  <label class="block uppercase tracking-wide text-gray-300 daek:text-gray-700 text-xs font-bold mb-2" for="grid-password">
                    EMAIL
                   </label>
-                 <input class="appearance-none block w-full dark:bg-gray-200 bg-gray-800 dark:text-gray-700 text-gray-200 border dark:border-gray-200 border-gray-700 rounded py-3 px-4 leading-tight focus:outline-none dark:focus:bg-white focus:border-gray-500" id="grid-password" type="email" placeholder="EMAIL@IKAR.com">
+                 <input v-model="posts.email" name="email" class="appearance-none block w-full dark:bg-gray-200 bg-gray-800 dark:text-gray-700 text-gray-200 border dark:border-gray-200 border-gray-700 rounded py-3 px-4 leading-tight focus:outline-none dark:focus:bg-white focus:border-gray-500" id="grid-password" type="email" placeholder="EMAIL@IKAR.com">
                 </div>
              </div>
              <!-- passsword -->
@@ -69,7 +69,7 @@
                  <label class="block uppercase tracking-wide text-gray-300 daek:text-gray-700 text-xs font-bold mb-2" for="grid-password">
                  Password
                   </label>
-                 <input class="appearance-none block w-full dark:bg-gray-200 bg-gray-800 dark:text-gray-700 text-gray-200 border dark:border-gray-200 border-gray-700 rounded py-3 px-4 leading-tight focus:outline-none dark:focus:bg-white focus:border-gray-500" id="grid-password" type="password" placeholder="******************">
+                 <input v-model="posts.password" name="password" class="appearance-none block w-full dark:bg-gray-200 bg-gray-800 dark:text-gray-700 text-gray-200 border dark:border-gray-200 border-gray-700 rounded py-3 px-4 leading-tight focus:outline-none dark:focus:bg-white focus:border-gray-500" id="grid-password" type="text" placeholder="******************">
                 </div>
              </div>
              <div class="flex flex-wrap -mx-3 mb-2">
@@ -78,7 +78,7 @@
                   <label class="block uppercase tracking-wide text-gray-300 daek:text-gray-700 text-xs font-bold mb-2" for="grid-city">
                     PHONE
                   </label>
-                  <input class="appearance-none block w-full dark:bg-gray-200 bg-gray-800 dark:text-gray-700 text-gray-200 border dark:border-gray-200 border-gray-700 rounded py-3 px-4 leading-tight focus:outline-none dark:focus:bg-white focus:border-gray-500" id="grid-city" type="tel" placeholder="0779352250">
+                  <input v-model="posts.phone" name="phone" class="appearance-none block w-full dark:bg-gray-200 bg-gray-800 dark:text-gray-700 text-gray-200 border dark:border-gray-200 border-gray-700 rounded py-3 px-4 leading-tight focus:outline-none dark:focus:bg-white focus:border-gray-500" id="grid-city" type="number" placeholder="0779352250">
                 </div>
                 <!-- position -->
                 <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
@@ -86,10 +86,10 @@
                       position
                   </label>
                 <div class="relative">
-                  <select class="block appearance-none w-full dark:bg-gray-200 bg-gray-800 dark:text-gray-700 text-gray-200 border dark:border-gray-200 border-gray-700 rounded py-3 px-4 leading-tight focus:outline-none dark:focus:bg-white focus:border-gray-500" id="grid-state">
-                    <option>Secretary</option>
-                    <option>Admin</option>
-                    <option>Mechanic</option>
+                  <select v-model="posts.type" name="type" class="block appearance-none w-full dark:bg-gray-200 bg-gray-800 dark:text-gray-700 text-gray-200 border dark:border-gray-200 border-gray-700 rounded py-3 px-4 leading-tight focus:outline-none dark:focus:bg-white focus:border-gray-500" id="grid-state">
+                    <option value="admin">Admin</option>
+                    <option value="secretary">secretary</option>
+                    <option value="mechanic">Mechanic</option>
                   </select>
                   <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
                     <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
@@ -97,21 +97,23 @@
                 </div>
                </div>
                <!-- Region -->
-                <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
+                <!-- <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
                   <label class="block uppercase tracking-wide text-gray-300 daek:text-gray-700 text-xs font-bold mb-2" for="grid-state">	
                       Region
                   </label>
                 <div class="relative">
-                  <select class="block appearance-none w-full dark:bg-gray-200 bg-gray-800 dark:text-gray-700 text-gray-200 border dark:border-gray-200 border-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none  dark:focus:bg-white focus:border-gray-500" id="grid-state">
-                    <option>ELoued</option>
-                    <option>Constantine</option>
-                    <option>Alger</option>
+                  <select v-model="posts.region" name="region" class="block appearance-none w-full dark:bg-gray-200 bg-gray-800 dark:text-gray-700 text-gray-200 border dark:border-gray-200 border-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none  dark:focus:bg-white focus:border-gray-500" id="grid-state">
+                    <option value="Eloued">Eloued</option>
+                    <option value="Guelma">Guelma</option>
+                    <option value="Alger">Alger</option>
+                    <option value="Mila">Mila</option>
+                    <option value="Mila">Oran</option>
                   </select>
                   <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
                     <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
                   </div>
                 </div>
-               </div>
+               </div> -->
              </div>
             </div>
             <!-- Upload img -->
@@ -131,7 +133,7 @@
                           <p class="pt-1 text-sm tracking-wider text-gray-400 group-hover:text-gray-600">
                             Attach a file</p>
                          </div>
-                        <input type="file" class="opacity-0 bg-gray-200" />
+                        <input name="picture" type="file" class="opacity-0 bg-gray-200" />
                        </label>
                    </div>
                   </div>
@@ -172,6 +174,16 @@ export default {
         password: 'required|min:3|max:100',
         email: 'required|min:3|max:100|email',
         remember: '',
+      },
+      posts: {
+        firstName: '',
+        lastName: '',
+        phone: '',
+        email: '',
+        userName: '',
+        password: '',
+        type: '',
+        region: '',
       },
     };
   },

@@ -37,9 +37,13 @@
         </div>
         <div class="flex mx-auto w-full p-5  z-0">
           <div class="w-[75%] flex flex-wrap ">
-            <div v-if="filteredVehicles" v-for="vehicle in filteredVehicles" :key="vehicle" v-scrollanimation  class=" translate-y-16 mr-2.5  duration-500   w-[32%]  mb-16 ">
+            <div v-if="filteredVehicles" v-for="(vehicle, index) in filteredVehicles" :key="vehicle" v-scrollanimation  class=" translate-y-16 mr-2.5  duration-500   w-[32%]  mb-16 ">
               <div class="bg-[#171818] dark:bg-white h-[21.5rem] rounded-t-lg  ">
-                 <h1 class="text-white dark:text-[#171818] text-2xl font-body font-bold p-2 uppercase text-center">{{ vehicle.name }}</h1>
+               <div class="flex  justify-between">
+                <div></div>
+                 <h1 class="text-white dark:text-[#171818] text-2xl font-body font-bold px-2 p-1 uppercase text-center">{{ vehicle.name }}</h1>
+                 <div class="h-4 p-2 w-4 bg-white rounded-full"></div>
+                </div> 
                  <h1 class="text-lg text-center font-body  text-white dark:text-[#171818]">
                    {{ vehicle.description }}
                  </h1>
@@ -59,14 +63,14 @@
                 </div>
                 <div class="flex">
                   <font-awesome-icon class="p-2" icon="gas-pump" />
-                  <h1 class="font-body py-1">gas</h1>
+                  <h1 class="font-body py-1">{{ vehicle.fuelType }}</h1>
                 </div>
                  </div>
                  <img :src="`data:image/png;base64,${vehicle.picture}`" alt="">
               </div>
               <div class="absolute rounded-b flex  w-full h-12 bg-[#10b981]">
-                <h1 class="text-white my-auto font-body font-bold mx-4 text-xl">{{ vehicle.brand }} 2021</h1>
-                <button class=" h-10 my-auto ml-auto mr-4 rounded text-sm font-body font-bold text-[#212529] bg-white p-2"> SHOW MORE </button>
+                <h1 class="text-white my-auto font-body font-bold mx-4 text-xl">{{ vehicle.brand }} {{ vehicle.releaseYear }}</h1>
+                <button @click="showMore(index)" class=" h-10 my-auto ml-auto mr-4 rounded text-sm font-body font-bold text-[#212529] bg-white p-2"> SHOW MORE </button>
               </div>
             </div>
           </div>
@@ -76,84 +80,95 @@
                 <font-awesome-icon class="my-auto" icon="plus" />
                 Add Vehicles </h1>
             </button>
-          <div v-scrollanimation class="w-[410px] ml-auto h-screen translate-y-24 duration-800 bg-[#171818] dark:bg-white rounded flex flex-wrap justify-between">
+          <div v-scrollanimation class="w-[410px] ml-auto  translate-y-24 duration-800 bg-[#171818] dark:bg-white rounded flex flex-wrap justify-between">
             <div class="p-4 ">
               <div class="flex ">
                 <h1 class=" text-2xl font-body font-bold text-white dark:text-[#171818] px-2" >Name :</h1>
-                <h1 class=" text-white dark:text-[#171818] py-1 font-body text-lg ">Standard Elite </h1>
+                <h1 class=" text-white dark:text-[#171818] py-1 font-body text-lg ">{{posts.name}} </h1>
+              </div>
+              <div class="flex ">
+                <h1 class=" text-2xl font-body font-bold text-white dark:text-[#171818] px-2" >Type :</h1>
+                <h1 class=" text-white dark:text-[#171818] py-1 font-body text-lg ">{{posts.type}} </h1>
               </div>
               <div class="flex ">
                 <h1 class=" text-2xl font-body font-bold text-white dark:text-[#171818] px-2" >Brand :</h1>
-                <h1 class=" text-white dark:text-[#171818] py-1 font-body text-lg ">BMW</h1>
+                <h1 class=" text-white dark:text-[#171818] py-1 font-body text-lg ">{{posts.brand}}</h1>
               </div>
               <div class="flex ">
                 <h1 class=" text-2xl font-body font-bold text-white dark:text-[#171818] px-2" >Model :</h1>
-                <h1 class=" text-white dark:text-[#171818] py-1 font-body text-lg ">288i Gran Coupe</h1>
+                <h1 class=" text-white dark:text-[#171818] py-1 font-body text-lg ">{{posts.model}}</h1>
               </div>
               <div class="flex ">
                 <h1 class=" text-2xl font-body font-bold text-white dark:text-[#171818] px-2" >Color :</h1>
-                <h1 class=" text-white dark:text-[#171818] py-1 font-body text-lg ">gray</h1>
+                <h1 class=" text-white dark:text-[#171818] py-1 font-body text-lg ">{{posts.color}}</h1>
               </div>
               <div class="flex ">
                 <h1 class=" text-[1.3rem] font-body font-bold text-white dark:text-[#171818] px-2" >Registration Number :</h1>
-                <h1 class=" text-white dark:text-[#171818] py-1 font-body text-lg ">021542-21-39</h1>
+                <h1 class=" text-white dark:text-[#171818] py-1 font-body text-lg ">{{posts.matricule}}</h1>
               </div>
               <div class="flex ">
-                <h1 class=" text-2xl font-body font-bold text-white dark:text-[#171818] px-2" >Stat :</h1>
-                <h1 class=" text-white dark:text-[#171818] py-1 font-body text-lg ">rented</h1>
+                <h1 class=" text-2xl font-body font-bold text-white dark:text-[#171818] px-2" >State :</h1>
+                <h1 class=" text-white dark:text-[#171818] py-1 font-body text-lg ">{{posts.state}}</h1>
               </div>
               <div class="flex ">
-                <h1 class=" text-2xl font-body font-bold text-white dark:text-[#171818] px-2" >Engine :</h1>
-                <h1 class=" text-white dark:text-[#171818] py-1 font-body text-lg ">Automatic</h1>
+                <h1 class=" text-2xl font-body font-bold text-white dark:text-[#171818] px-2" >Transmission :</h1>
+                <h1 v-if="posts.transmission == '1'" class=" text-white dark:text-[#171818] py-1 font-body text-lg ">Automatic</h1>
+                <h1 v-if="posts.transmission == '0'" class=" text-white dark:text-[#171818] py-1 font-body text-lg ">Manual</h1>
               </div>
               <div class="flex ">
                 <h1 class=" text-2xl font-body font-bold text-white dark:text-[#171818] px-2" >Fuel :</h1>
-                <h1 class=" text-white dark:text-[#171818] py-1 font-body text-lg "> Gas</h1>
+                <h1 class=" text-white dark:text-[#171818] py-1 font-body text-lg ">{{posts.fuel}}</h1>
               </div>
               <div class="flex ">
                 <h1 class=" text-2xl font-body font-bold text-white dark:text-[#171818] px-2" >Price Per Day :</h1>
-                <h1 class=" text-white dark:text-[#171818] py-1 font-body text-lg "> $150</h1>
+                <h1 class=" text-white dark:text-[#171818] py-1 font-body text-lg ">{{posts.pricePerDay}}</h1>
               </div>
               <div class="flex ">
                 <h1 class=" text-2xl font-body font-bold text-white dark:text-[#171818] px-2" >Price Per Hour :</h1>
-                <h1 class=" text-white dark:text-[#171818] py-1 font-body text-lg "> $10</h1>
+                <h1 class=" text-white dark:text-[#171818] py-1 font-body text-lg ">{{posts.pricePerHour}}</h1>
               </div>
               <div class="flex ">
                 <h1 class=" text-2xl font-body font-bold text-white dark:text-[#171818] px-2" >Passengers :</h1>
-                <h1 class=" text-white dark:text-[#171818] py-1 font-body text-lg ">5</h1>
+                <h1 class=" text-white dark:text-[#171818] py-1 font-body text-lg ">{{posts.passengers}}</h1>
               </div>
               <div class="flex ">
                 <h1 class=" text-2xl font-body font-bold text-white dark:text-[#171818] px-2" >Doors :</h1>
-                <h1 class=" text-white dark:text-[#171818] py-1 font-body text-lg "> 4</h1>
+                <h1 class=" text-white dark:text-[#171818] py-1 font-body text-lg "> {{posts.doors}}</h1>
+              </div>
+              <div class="flex ">
+                <h1 class=" text-2xl font-body font-bold text-white dark:text-[#171818] px-2" >Bags :</h1>
+                <h1 class=" text-white dark:text-[#171818] py-1 font-body text-lg "> {{posts.bags}}</h1>
               </div>
               <div class="flex ">
                 <h1 class=" text-2xl font-body font-bold text-white dark:text-[#171818] px-2" >Depots :</h1>
                 <ul>
-                   <li class=" text-white dark:text-[#171818] py-1 font-body text-lg px-1 "> Eloued</li>
-                    <li class=" text-white dark:text-[#171818] py-1 font-body text-lg px-1 "> Constantine</li>
+                   <li class=" text-white dark:text-[#171818] py-1 font-body text-lg px-1 "> {{posts.depot}}</li>
                 </ul>
               </div>
               <div class="flex ">
                 <h1 class=" text-2xl font-body font-bold text-white dark:text-[#171818] px-2" >seconds:</h1>
                 <ul class="">
-                    <li class=" text-white dark:text-[#171818] py-1 font-body text-lg px-1 "> Bluetooth</li>
-                    <li class=" text-white dark:text-[#171818] py-1 font-body text-lg px-1 "> Cruise Control</li>
-                    <li class=" text-white dark:text-[#171818] py-1 font-body text-lg px-1 "> Am/FM Stereo Radio</li>
-                    <li class=" text-white dark:text-[#171818] py-1 font-body text-lg px-1 "> Air Conditioning</li>
-                    <li class=" text-white dark:text-[#171818] py-1 font-body text-lg px-1 "> Leather Interior</li>
+                    <li v-if="posts.hasbluetooth" class=" text-white dark:text-[#171818] py-1 font-body text-lg px-1 "> Bluetooth</li>
+                    <li v-if="posts.hascruisecontrol" class=" text-white dark:text-[#171818] py-1 font-body text-lg px-1 "> Cruise Control</li>
+                    <li v-if="posts.hasAMFMstereoRadio " class=" text-white dark:text-[#171818] py-1 font-body text-lg px-1 "> Am/FM Stereo Radio</li>
+                    <li v-if="posts.hasAirConditioning" class=" text-white dark:text-[#171818] py-1 font-body text-lg px-1 "> Air Conditioning</li>
+                    <l v-if="posts.hasLeatherInterior" class=" text-white dark:text-[#171818] py-1 font-body text-lg px-1 "> Leather Interior</l>
                 </ul>
               </div>
+            </div>
+            <div class="flex w-full">
+              <button @click="deleteVehicle" class="w-[100%] mx-4  rounded my-4 bg-red-500 text-white py-2 px-4 uppercase font-body font-bold"> Delete</button>
             </div>
 
           </div>
           </div>
-          <div v-scrollanimation class="-translate-y-10 duration-200 h-10 w-10 left-[1470px] top-[20rem] rounded-sm shadow-lg  shadow-[#0000005c] absolute flex hover:bg-emerald-700 bg-emerald-500 ">
+          <div v-scrollanimation @click="toggleUpdateVehicle" class="-translate-y-10 duration-200 h-10 w-10 left-[1470px] top-[20rem] rounded-sm shadow-lg  shadow-[#0000005c] absolute flex hover:bg-emerald-700 bg-emerald-500 ">
                 <font-awesome-icon class="text-white m-auto text-xl" icon="pen" />
               </div>
         </div>
         <div :style="{ 'margin-left': sidebarWidth }" v-scrollanimation v-if="filter" class="flex w-[80%] left-[6.7rem]  -translate-y-10 duration-200 top-[13rem]  mx-auto justify-between dark:bg-[#171818] bg-gray-100  rounded absolute">
                          <div class="m-4">
-                           <header class="border-b bg-gray-200 dark:bg-gray-800 border-[#10b981]">
+                           <header class="border-b rounded-sm bg-gray-200 dark:bg-gray-800 border-[#10b981]">
                             <h1 class="text dark:text-white text-[#171818] font-body font-bold py-2 px-4"> Fuel </h1>
                            </header>
                            <div>
@@ -171,12 +186,12 @@
                              </div>
                              <div class="mx-4">
                                <input class="w-4 h-4" type="checkbox">
-                               <label class="text-lg text-[#171818] dark:text-white font-body px-2" for="">Diesel</label>
+                               <label class="text-lg text-[#171818] dark:text-white font-body px-2 " for="">Diesel</label>
                              </div>
                            </div>
                          </div>
                          <div class="m-4">
-                           <header class="border-b bg-gray-200 dark:bg-gray-800 border-[#10b981]">
+                           <header class="border-b rounded-sm bg-gray-200 dark:bg-gray-800 border-[#10b981]">
                             <h1 class="text dark:text-white text-[#171818] font-body font-bold py-2 px-4"> Type </h1>
                            </header>
                            <div>
@@ -199,7 +214,7 @@
                            </div>
                          </div>
                          <div class="m-4">
-                           <header class="border-b bg-gray-200 dark:bg-gray-800 border-[#10b981]">
+                           <header class="border-b rounded-sm bg-gray-200 dark:bg-gray-800 border-[#10b981]">
                             <h1 class="text dark:text-white text-[#171818] font-body font-bold py-2 px-4"> Transmission </h1>
                            </header>
                            <div>
@@ -214,7 +229,7 @@
                            </div>
                          </div>
                          <div class="m-4">
-                           <header class="border-b bg-gray-200 dark:bg-gray-800 border-[#10b981]">
+                           <header class="border-b rounded-sm bg-gray-200 dark:bg-gray-800 border-[#10b981]">
                             <h1 class="text dark:text-white text-[#171818] font-body font-bold py-2 px-4"> State </h1>
                            </header>
                            <div>
@@ -241,7 +256,7 @@
                            </div>
                          </div>
                          <div class="m-4">
-                           <header class="border-b bg-gray-200 dark:bg-gray-800 border-[#10b981]">
+                           <header class="border-b rounded-sm bg-gray-200 dark:bg-gray-800 border-[#10b981]">
                             <h1 class="text dark:text-white text-[#171818] font-body font-bold py-2 px-4"> passengers </h1>
                            </header>
                            <select class=" w-full text-lg my-2 px-4 h-10 font-body font-bold" name="" id="">
@@ -259,6 +274,9 @@
         </div>
        </div>
         <AddVehicles />
+        <UpdateVehicle  :name="posts.name"  :matricule="posts.matricule"  :brand="posts.brand" :model="posts.model" :color="posts.color" :releaseYear="posts.releaseYear" :hasairconditioning="posts.hasairconditioning"
+        :fuel="posts.fuel" :pricePerDay="posts.pricePerDay" :pricePerHour="posts.pricePerHour" :passengers="posts.passengers" :hasbluetooth="posts.hasbluetooth" :hascruisecontrol="posts.hascruisecontrol"
+        :bags="posts.bags" :doors="posts.doors"  :depot="posts.depot" :type="posts.type"   :hasAMFMstereoRadio="posts.hasAMFMstereoRadio"  :hasleatherInterior="posts.hasleatherInterior"  :transmission="posts.transmission"/>
   </div>
 </template>
 
@@ -267,6 +285,7 @@ import { mapMutations } from 'vuex';
 import SideBar from '../components/Sidebar.vue';
 import Nav from '../components/Nav.vue';
 import AddVehicles from '../components/AddVehicle.vue';
+import UpdateVehicle from '../components/UpdateVehicle.vue';
 import { sidebarWidth } from '../SideBar/sideBar';
 
 export default {
@@ -276,12 +295,36 @@ export default {
       vehicles: [],
       search: '',
       filter: false,
+      posts: {
+        matricule: '',
+        name: '',
+        brand: '',
+        model: '',
+        color: '',
+        type: '',
+        transmission: '',
+        state: '',
+        fuel: '',
+        pricePerDay: '',
+        pricePerHour: '',
+        passengers: '',
+        releaseYear: '',
+        bags: '',
+        doors: '',
+        depot: '',
+        hasbluetooth: '',
+        hascruisecontrol: '',
+        hasAMFMstereoRadio: '',
+        hasAirConditioning: '',
+        hasLeatherInterior: '',
+      },
     };
   },
   components: {
     SideBar,
     Nav,
     AddVehicles,
+    UpdateVehicle,
   },
   setup() {
     return { sidebarWidth };
@@ -298,25 +341,60 @@ export default {
     },
   },
   mounted() {
-    fetch('http://localhost:3000/api/admin/vehicles')
+    fetch('http://localhost:3000/api/vehicles')
       .then(res => res.json())
       .then(data => {
         // const vehicles = data.filter(vehicle => vehicle.placeNumber >= this.filterPassengers);
         const set = new Set();
         const Output = [];
         data.forEach(car => {
-          if (!set.has(car.description)) {
-            set.add(car.description);
-            Output.push(car);
-          }
-        });
+          // if (!set.has(car.description)) {
+          //   set.add(car.description);
+          //   Output.push(car);
+          // }
 
-        this.vehicles = Output;
+        });
+        this.vehicles = data;
       })
       .catch(err => console.log(err.message));
   },
   methods: {
     ...mapMutations(['toggleAddVehicle']),
+    ...mapMutations(['toggleUpdateVehicle']),
+    showMore(index) {
+      this.posts.name = this.vehicles[index].name;
+      this.posts.type = this.vehicles[index].type;
+      this.posts.matricule = this.vehicles[index].matricule;
+      this.posts.brand = this.vehicles[index].brand;
+      this.posts.model = this.vehicles[index].model;
+      this.posts.color = this.vehicles[index].color;
+      this.posts.state = this.vehicles[index].status;
+      this.posts.transmission = this.vehicles[index].isAutomatic;
+      this.posts.fuel = this.vehicles[index].fuelType;
+      this.posts.pricePerDay = this.vehicles[index].pricePerDay;
+      this.posts.pricePerHour = this.vehicles[index].pricePerHour;
+      this.posts.passengers = this.vehicles[index].placeNumber;
+      this.posts.doors = this.vehicles[index].doorsNumber;
+      this.posts.depot = this.vehicles[index].deposit_id;
+      this.posts.bags = this.vehicles[index].bagsNumber;
+      this.posts.releaseYear = this.vehicles[index].releaseYear;
+      this.posts.hasbluetooth = this.vehicles[index].hasbluetooth;
+      this.posts.hascruisecontrol = this.vehicles[index].hascruisecontrol;
+      this.posts.hasAMFMstereoRadio = this.vehicles[index].hasAMFMstereoRadio;
+      this.posts.hasairconditioning = this.vehicles[index].hasairconditioning;
+      this.posts.hasLeatherInterior = this.vehicles[index].hasleatherInterior;
+      console.log(this.posts.transmission);
+    },
+    deleteVehicle() {
+      const matricule = this.posts.matricule;
+      const url = `http://localhost:3000/api/vehicles/${matricule}`;
+      console.log(typeof (matricule));
+      console.log(url);
+      fetch(url, {
+        method: "DELETE",
+      }).then(res => console.log(res.json()))
+        .catch(err => console.log(err));
+    },
   },
 };
 </script>
