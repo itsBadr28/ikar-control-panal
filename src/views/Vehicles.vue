@@ -276,7 +276,7 @@
         <AddVehicles />
         <UpdateVehicle  :name="posts.name"  :matricule="posts.matricule"  :brand="posts.brand" :model="posts.model" :color="posts.color" :releaseYear="posts.releaseYear" :hasairconditioning="posts.hasairconditioning"
         :fuel="posts.fuel" :pricePerDay="posts.pricePerDay" :pricePerHour="posts.pricePerHour" :passengers="posts.passengers" :hasbluetooth="posts.hasbluetooth" :hascruisecontrol="posts.hascruisecontrol"
-        :bags="posts.bags" :doors="posts.doors"  :depot="posts.depot" :type="posts.type"   :hasAMFMstereoRadio="posts.hasAMFMstereoRadio"  :hasleatherInterior="posts.hasleatherInterior"  :transmission="posts.transmission"/>
+        :bags="posts.bags" :doors="posts.doors"  :id="posts.id" :depot="posts.depot" :state="posts.state" :description="posts.description" :type="posts.type"   :hasAMFMstereoRadio="posts.hasAMFMstereoRadio"  :hasleatherInterior="posts.hasleatherInterior"  :transmission="posts.transmission"/>
   </div>
 </template>
 
@@ -296,6 +296,8 @@ export default {
       search: '',
       filter: false,
       posts: {
+        id: '',
+        description: '',
         matricule: '',
         name: '',
         brand: '',
@@ -345,15 +347,6 @@ export default {
       .then(res => res.json())
       .then(data => {
         // const vehicles = data.filter(vehicle => vehicle.placeNumber >= this.filterPassengers);
-        const set = new Set();
-        const Output = [];
-        data.forEach(car => {
-          // if (!set.has(car.description)) {
-          //   set.add(car.description);
-          //   Output.push(car);
-          // }
-
-        });
         this.vehicles = data;
       })
       .catch(err => console.log(err.message));
@@ -362,28 +355,29 @@ export default {
     ...mapMutations(['toggleAddVehicle']),
     ...mapMutations(['toggleUpdateVehicle']),
     showMore(index) {
-      this.posts.name = this.vehicles[index].name;
-      this.posts.type = this.vehicles[index].type;
-      this.posts.matricule = this.vehicles[index].matricule;
-      this.posts.brand = this.vehicles[index].brand;
-      this.posts.model = this.vehicles[index].model;
-      this.posts.color = this.vehicles[index].color;
-      this.posts.state = this.vehicles[index].status;
-      this.posts.transmission = this.vehicles[index].isAutomatic;
-      this.posts.fuel = this.vehicles[index].fuelType;
-      this.posts.pricePerDay = this.vehicles[index].pricePerDay;
-      this.posts.pricePerHour = this.vehicles[index].pricePerHour;
-      this.posts.passengers = this.vehicles[index].placeNumber;
-      this.posts.doors = this.vehicles[index].doorsNumber;
-      this.posts.depot = this.vehicles[index].deposit_id;
-      this.posts.bags = this.vehicles[index].bagsNumber;
-      this.posts.releaseYear = this.vehicles[index].releaseYear;
-      this.posts.hasbluetooth = this.vehicles[index].hasbluetooth;
-      this.posts.hascruisecontrol = this.vehicles[index].hascruisecontrol;
-      this.posts.hasAMFMstereoRadio = this.vehicles[index].hasAMFMstereoRadio;
-      this.posts.hasairconditioning = this.vehicles[index].hasairconditioning;
-      this.posts.hasLeatherInterior = this.vehicles[index].hasleatherInterior;
-      console.log(this.posts.transmission);
+      this.posts.name = this.filteredVehicles[index].name;
+      this.posts.id = this.filteredVehicles[index].id;
+      this.posts.type = this.filteredVehicles[index].type;
+      this.posts.description = this.filteredVehicles[index].description;
+      this.posts.matricule = this.filteredVehicles[index].matricule;
+      this.posts.brand = this.filteredVehicles[index].brand;
+      this.posts.model = this.filteredVehicles[index].model;
+      this.posts.color = this.filteredVehicles[index].color;
+      this.posts.state = this.filteredVehicles[index].status;
+      this.posts.transmission = this.filteredVehicles[index].isAutomatic;
+      this.posts.fuel = this.filteredVehicles[index].fuelType;
+      this.posts.pricePerDay = this.filteredVehicles[index].pricePerDay;
+      this.posts.pricePerHour = this.filteredVehicles[index].pricePerHour;
+      this.posts.passengers = this.filteredVehicles[index].placeNumber;
+      this.posts.doors = this.filteredVehicles[index].doorsNumber;
+      this.posts.depot = this.filteredVehicles[index].deposit_id;
+      this.posts.bags = this.filteredVehicles[index].bagsNumber;
+      this.posts.releaseYear = this.filteredVehicles[index].releaseYear;
+      this.posts.hasbluetooth = this.filteredVehicles[index].hasbluetooth;
+      this.posts.hascruisecontrol = this.filteredVehicles[index].hascruisecontrol;
+      this.posts.hasAMFMstereoRadio = this.filteredVehicles[index].hasAMFMstereoRadio;
+      this.posts.hasairconditioning = this.filteredVehicles[index].hasairconditioning;
+      this.posts.hasLeatherInterior = this.filteredVehicles[index].hasleatherInterior;
     },
     deleteVehicle() {
       const matricule = this.posts.matricule;

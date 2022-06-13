@@ -30,6 +30,7 @@ module.exports = {
     'no-multi-assign': 'off',
     'new-cap': 'off',
     'prefer-arrow-callback': 'off',
+    'camelcase': 'off',
   },
   overrides: [
     {

@@ -29,7 +29,7 @@
           <div class=" mb-2 grid">
             <div class="flex flex-row rounded-lg bg-gray-800 dark:bg-white  p-6">
               <div class="relative">
-                <img class="w-20 h-20 rounded-md object-cover" src="https://api.lorem.space/image/face?w=150&h=150"
+                <img class="w-20 h-20 rounded-md object-cover" :src="`data:image/png;base64,${picture}`"
                   alt="User" />
                 <div
                   class="absolute -right-3 bottom-5 h-5 w-5 sm:top-2 rounded-full border-4 border-white bg-green-400 sm:invisible md:visible"
@@ -39,7 +39,7 @@
               <div class="flex h-8 flex-row">
                <!-- Username -->
                <a  target="_blank">
-                 <h2 class="text-lg text-white dark:text-gray-600 font-semibold">AD Badr Eddine</h2>
+                 <h2 class="text-lg text-white dark:text-gray-600 font-semibold">{{firstName}} {{lastName}}</h2>
                </a>
         <!-- User Verified -->
               <svg class="my-auto ml-2 h-5 fill-blue-400" xmlns="http://www.w3.org/2000/svg"
@@ -59,7 +59,7 @@
                     d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M7.07,18.28C7.5,17.38 10.12,16.5 12,16.5C13.88,16.5 16.5,17.38 16.93,18.28C15.57,19.36 13.86,20 12,20C10.14,20 8.43,19.36 7.07,18.28M18.36,16.83C16.93,15.09 13.46,14.5 12,14.5C10.54,14.5 7.07,15.09 5.64,16.83C4.62,15.5 4,13.82 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,13.82 19.38,15.5 18.36,16.83M12,6C10.06,6 8.5,7.56 8.5,9.5C8.5,11.44 10.06,13 12,13C13.94,13 15.5,11.44 15.5,9.5C15.5,7.56 13.94,6 12,6M12,11A1.5,1.5 0 0,1 10.5,9.5A1.5,1.5 0 0,1 12,8A1.5,1.5 0 0,1 13.5,9.5A1.5,1.5 0 0,1 12,11Z" />
                </svg>
       
-                <div class="text-xs text-gray-400/80 hover:text-gray-400">Admin</div>
+                <div class="text-xs text-gray-400/80 hover:text-gray-400">{{ type }}</div>
               </div>
 
         <!-- Badge Location -->
@@ -70,14 +70,14 @@
                    d="M12,6.5A2.5,2.5 0 0,1 14.5,9A2.5,2.5 0 0,1 12,11.5A2.5,2.5 0 0,1 9.5,9A2.5,2.5 0 0,1 12,6.5M12,2A7,7 0 0,1 19,9C19,14.25 12,22 12,22C12,22 5,14.25 5,9A7,7 0 0,1 12,2M12,4A5,5 0 0,0 7,9C7,10 7,12 12,18.71C17,12 17,10 17,9A5,5 0 0,0 12,4Z" />
                  </svg>
      
-               <div class="text-xs text-gray-400/80 hover:text-gray-400">ELoued</div>
+               <div class="text-xs text-gray-400/80 hover:text-gray-400">{{region}}</div>
              </div>
 
         <!-- Badge phone-->
         <div class="flex flex-row">
           <font-awesome-icon class="mr-2 h-3 my-auto w-3 text-gray-500/80" icon="phone" />
 
-          <div class="text-xs text-gray-400/80 hover:text-gray-400">0779255292</div>
+          <div class="text-xs text-gray-400/80 hover:text-gray-400">{{phone}}</div>
         </div>
            </div>
 
@@ -151,7 +151,7 @@
     </div>
             </div>
           </div>
-           <form class="">
+           <form @submit="updateStaff" >
             <div class="flex justify-between ">
             <div class="w-full mx-2">
              <div class="flex flex-wrap -mx-3 mb-6">
@@ -160,14 +160,14 @@
                 <label class="block uppercase tracking-wide text-gray-300 daek:text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
                   First Name
                  </label>
-                 <input class="appearance-none block w-full dark:bg-gray-200 bg-gray-800 dark:text-gray-700 text-gray-200 border dark:border-gray-200 border-gray-700 rounded py-3 px-4 leading-tight focus:outline-none dark:focus:bg-white focus:border-gray-500" id="grid-first-name" type="text" placeholder="Jane">
+                 <input v-model="firstName" class="appearance-none block w-full dark:bg-gray-200 bg-gray-800 dark:text-gray-700 text-gray-200 border dark:border-gray-200 border-gray-700 rounded py-3 px-4 leading-tight focus:outline-none dark:focus:bg-white focus:border-gray-500" id="grid-first-name" type="text" placeholder="Jane">
               </div>
               <!-- last Name -->
               <div class="w-full md:w-1/2 px-3">
                 <label class="block uppercase tracking-wide text-gray-300 daek:text-gray-700 text-xs font-bold mb-2" for="grid-last-name">
                   Last Name
                 </label>
-             <input class="appearance-none block w-full dark:bg-gray-200 bg-gray-800 dark:text-gray-700 text-gray-200 border dark:border-gray-200 border-gray-700 rounded py-3 px-4 leading-tight focus:outline-none dark:focus:bg-white focus:border-gray-500" id="grid-last-name" type="text" placeholder="Doe">
+             <input v-model="lastName" class="appearance-none block w-full dark:bg-gray-200 bg-gray-800 dark:text-gray-700 text-gray-200 border dark:border-gray-200 border-gray-700 rounded py-3 px-4 leading-tight focus:outline-none dark:focus:bg-white focus:border-gray-500" id="grid-last-name" type="text" placeholder="Doe">
                 </div>
                 </div>
              <!-- user Name -->
@@ -176,7 +176,7 @@
                  <label class="block uppercase tracking-wide text-gray-300 daek:text-gray-700 text-xs font-bold mb-2" for="grid-password">
                    User Name
                   </label>
-                 <input class="appearance-none block w-full dark:bg-gray-200 bg-gray-800 dark:text-gray-700 text-gray-200 border dark:border-gray-200 border-gray-700 rounded py-3 px-4 leading-tight focus:outline-none dark:focus:bg-white focus:border-gray-500" id="grid-userName" type="text" placeholder="User Name">
+                 <input v-model="userName" class="appearance-none block w-full dark:bg-gray-200 bg-gray-800 dark:text-gray-700 text-gray-200 border dark:border-gray-200 border-gray-700 rounded py-3 px-4 leading-tight focus:outline-none dark:focus:bg-white focus:border-gray-500" id="grid-userName" type="text" placeholder="User Name">
                 </div>
              </div>
                 <!-- email -->
@@ -185,7 +185,7 @@
                  <label class="block uppercase tracking-wide text-gray-300 daek:text-gray-700 text-xs font-bold mb-2" for="grid-password">
                    EMAIL
                   </label>
-                 <input class="appearance-none block w-full dark:bg-gray-200 bg-gray-800 dark:text-gray-700 text-gray-200 border dark:border-gray-200 border-gray-700 rounded py-3 px-4 leading-tight focus:outline-none dark:focus:bg-white focus:border-gray-500" id="grid-email" type="email" placeholder="EMAIL@IKAR.com">
+                 <input v-model="email" class="appearance-none block w-full dark:bg-gray-200 bg-gray-800 dark:text-gray-700 text-gray-200 border dark:border-gray-200 border-gray-700 rounded py-3 px-4 leading-tight focus:outline-none dark:focus:bg-white focus:border-gray-500" id="grid-email" type="email" placeholder="EMAIL@IKAR.com">
                 </div>
              </div>
              <!-- passsword -->
@@ -203,7 +203,7 @@
                   <label class="block uppercase tracking-wide text-gray-300 daek:text-gray-700 text-xs font-bold mb-2" for="grid-city">
                     PHONE
                   </label>
-                  <input class="appearance-none block w-full dark:bg-gray-200 bg-gray-800 dark:text-gray-700 text-gray-200 border dark:border-gray-200 border-gray-700 rounded py-3 px-4 leading-tight focus:outline-none dark:focus:bg-white focus:border-gray-500" id="grid-city" type="tel" placeholder="0779352250">
+                  <input v-model="phone" class="appearance-none block w-full dark:bg-gray-200 bg-gray-800 dark:text-gray-700 text-gray-200 border dark:border-gray-200 border-gray-700 rounded py-3 px-4 leading-tight focus:outline-none dark:focus:bg-white focus:border-gray-500" id="grid-city" type="tel" placeholder="0779352250">
                 </div>
                 <!-- position -->
                 <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
@@ -211,10 +211,10 @@
                       position
                   </label>
                 <div class="relative">
-                  <select class="block appearance-none w-full dark:bg-gray-200 bg-gray-800 dark:text-gray-700 text-gray-200 border dark:border-gray-200 border-gray-700 rounded py-3 px-4 leading-tight focus:outline-none dark:focus:bg-white focus:border-gray-500" id="grid-state">
-                    <option>Secretary</option>
-                    <option>Admin</option>
-                    <option>Mechanic</option>
+                  <select v-model="type" class="block appearance-none w-full dark:bg-gray-200 bg-gray-800 dark:text-gray-700 text-gray-200 border dark:border-gray-200 border-gray-700 rounded py-3 px-4 leading-tight focus:outline-none dark:focus:bg-white focus:border-gray-500" id="grid-state">
+                    <option value="secretary">Secretary</option>
+                    <option value="admin">Admin</option>
+                    <option value="mechanic">Mechanic</option>
                   </select>
                   <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
                     <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
@@ -227,10 +227,12 @@
                       Region
                   </label>
                 <div class="relative">
-                  <select class="block appearance-none w-full dark:bg-gray-200 bg-gray-800 dark:text-gray-700 text-gray-200 border dark:border-gray-200 border-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none  dark:focus:bg-white focus:border-gray-500" id="grid-state">
-                    <option>ELoued</option>
-                    <option>Constantine</option>
-                    <option>Alger</option>
+                  <select v-model="region" class="block appearance-none w-full dark:bg-gray-200 bg-gray-800 dark:text-gray-700 text-gray-200 border dark:border-gray-200 border-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none  dark:focus:bg-white focus:border-gray-500" id="grid-state">
+                    <option value="Eloued">Eloued</option>
+                    <option value="Mila">Mila</option>
+                    <option value="Guelma">Guelma</option>
+                    <option value="Alger">Alger</option>
+                    <option value="Oran">Oran</option>
                   </select>
                   <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
                     <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
@@ -258,6 +260,18 @@ import { mapMutations, mapState } from 'vuex';
 
 export default {
   name: 'StaffProfile',
+  props: {
+    picture: String,
+    firstName: String,
+    lastName: String,
+    phone: Number,
+    email: String,
+    userName: String,
+    type: String,
+    region: String,
+    id: String,
+    profil_id: String,
+  },
   data() {
     return {
       schema: {
@@ -290,11 +304,47 @@ export default {
   methods: {
     ...mapMutations(['toggleAddStaff']),
     ...mapMutations(['togglestaffProfile']),
-    register(values) {
-      console.log(values);
-    },
-    login(values) {
-      console.log(values);
+    async updateStaff(e) {
+      e.preventDefault();
+      const firstName = this.$props.firstName;
+      const lastName = this.$props.lastName;
+      const phone = this.$props.phone;
+      const email = this.$props.email;
+      const type = this.$props.type;
+      const userName = this.$props.userName;
+      const region = this.$props.region;
+      const id = this.$props.id;
+      const profil_id = this.$props.profil_id;
+      const data = {
+        id,
+        firstName,
+        lastName,
+        phone,
+        email,
+        type,
+        userName,
+        region,
+        profil_id,
+      };
+      console.log(this.$props.profil_id);
+      console.log(JSON.stringify(data));
+      const url = `http://localhost:3000/api/users/${id}`;
+      console.log(url);
+      console.log(data);
+      try {
+        const request = await fetch(url, {
+          method: 'PATCH',
+          body: JSON.stringify(data),
+          headers: {
+            'Content-type': 'application/json',
+          },
+        });
+        const response = await request.json();
+        console.log(response);
+        window.location.reload();
+      } catch (err) {
+        console.log(err.message);
+      }
     },
   },
 };

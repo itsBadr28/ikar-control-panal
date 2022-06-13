@@ -26,7 +26,7 @@
             </div>
           </div>
 
-          <form @submit="postDataAddVehicle" method="post" enctype="multipart/form-data" action="http://localhost:3000/api/vehicles" >
+          <form @submit="updateVehicle" method="PATCH" :action="`http://localhost:3000/api/vehicles/${id}`" >
             <div class="flex justify-between ">
             <div class="w-full mx-2">
              <div class="flex flex-wrap -mx-3 mb-6">
@@ -51,7 +51,7 @@
                  <input v-model="model" name="model" class="appearance-none block w-full dark:bg-gray-200 bg-gray-800 dark:text-gray-700 text-gray-200 border dark:border-gray-200 border-gray-700 rounded py-3 px-4 leading-tight focus:outline-none dark:focus:bg-white focus:border-gray-500" id="grid-userName" type="text" placeholder="Model of Vehicle">
                 </div>
              </div>
-              <!-- <div class="flex flex-wrap -mx-3 mb-6">
+               <div class="flex flex-wrap -mx-3 mb-6">
                 <div class="w-full px-3">
                  <label class="block uppercase tracking-wide text-gray-300 daek:text-gray-700 text-xs font-bold mb-2" for="grid-password">
                    Description
@@ -193,17 +193,17 @@
                   </label>
                 <div class="">
                     <div class="flex flex-wrap justify-start">
-                   <input type="checkbox" v-model="hasbluetooth" class="h-4 w-4 outline-none my-auto mx-3 mb-1" name="hasBluetooth" value="1">
+                   <input type="checkbox" v-model="hasbluetooth" class="h-4 w-4 outline-none my-auto mx-3 mb-1" name="hasbluetooth" value="1">
                    <label class="block uppercase tracking-wide text-gray-300 text-sm mb-1  daek:text-gray-700 my-auto">Bluetooth</label>
-                   <input type="checkbox" v-model="hascruisecontrol" class="h-4 w-4 outline-none my-auto mx-3 mb-1" name="hasAMFMstereoRadio" value="1">
+                   <input type="checkbox" v-model="hascruisecontrol" class="h-4 w-4 outline-none my-auto mx-3 mb-1" name="hascruisecontrol" value="1">
                    <label class="block uppercase tracking-wide text-gray-300 text-sm mb-1  daek:text-gray-700 my-auto"> Cruise Control</label>
                     </div>
                     <div class="flex flex-wrap justify-start">
-                   <input type="checkbox" v-model="hasAMFMstereoRadio" class="h-4 w-4 outline-none my-auto mx-3 mb-1" name="hasairconditioning" value="1">
+                   <input type="checkbox" v-model="hasAMFMstereoRadio" class="h-4 w-4 outline-none my-auto mx-3 mb-1" name="hasAMFMstereoRadio" value="1">
                    <label class="block uppercase tracking-wide text-gray-300 text-sm mb-1  daek:text-gray-700 my-auto">Am/FM Stereo Radio</label>
-                   <input type="checkbox" v-model="hasairconditioning" class="h-4 w-4 outline-none my-auto mx-3 mb-1" name="hasleatherInterior" value="1">
+                   <input type="checkbox" v-model="hasairconditioning" class="h-4 w-4 outline-none my-auto mx-3 mb-1" name="hasairconditioning" value="1">
                    <label class="block uppercase tracking-wide text-gray-300 text-sm mb-1 pr-8 daek:text-gray-700 my-auto"> Air Conditioning </label> 
-                   <input type="checkbox" v-model="hasleatherInterior" class="h-4 w-4 outline-none my-auto mx-3 mb-1" name="LeatherInterior" value="1">
+                   <input type="checkbox" v-model="hasleatherInterior" class="h-4 w-4 outline-none my-auto mx-3 mb-1" name="hasleatherInterior" value="1">
                    <label class="block uppercase tracking-wide text-gray-300 text-sm mb-1 pr-8 daek:text-gray-700 my-auto"> Leather Interior </label>                  
                     </div>
                     
@@ -228,11 +228,14 @@ import { mapMutations, mapState } from 'vuex';
 export default {
   name: 'updateVehicle',
   props: {
+    id: String,
+    description: String,
     name: String,
     brand: String,
     model: String,
     color: String,
     fuel: String,
+    state: String,
     matricule: Number,
     releaseYear: Number,
     pricePerDay: Number,
@@ -275,6 +278,74 @@ export default {
   },
   methods: {
     ...mapMutations(['toggleUpdateVehicle']),
+    async updateVehicle(e) {
+      e.preventDefault();
+      const name = this.$props.name;
+      const id = this.$props.id;
+      const brand = this.$props.brand;
+      const model = this.$props.model;
+      const color = this.$props.color;
+      const fuelType = this.$props.fuel;
+      const matricule = this.$props.matricule;
+      const releaseYear = this.$props.releaseYear;
+      const pricePerDay = this.$props.pricePerDay;
+      const pricePerHour = this.$props.pricePerHour;
+      const placeNumber = this.$props.passengers;
+      const bagsNumber = this.$props.bags;
+      const doorsNumber = this.$props.doors;
+      const deposit = this.$props.depot;
+      const type = this.$props.type;
+      const status = this.$props.state;
+      console.log(type);
+      const hasbluetooth = this.$props.hasbluetooth;
+      const hasAMFMstereoRadio = this.$props.hasAMFMstereoRadio;
+      const hasleatherInterior = this.$props.hasleatherInterior;
+      const hascruisecontrol = this.$props.hascruisecontrol;
+      const hasairconditioning = this.$props.hasairconditioning;
+      const isAutomatic = this.$props.transmission;
+      const description = this.$props.description;
+      const data = {
+        name,
+        brand,
+        model,
+        color,
+        fuelType,
+        matricule,
+        releaseYear,
+        pricePerDay,
+        pricePerHour,
+        placeNumber,
+        bagsNumber,
+        doorsNumber,
+        deposit,
+        type,
+        status,
+        hasbluetooth,
+        hasAMFMstereoRadio,
+        hasleatherInterior,
+        hascruisecontrol,
+        hasairconditioning,
+        isAutomatic,
+        description,
+      };
+      console.log(JSON.stringify(data));
+      const url = `http://localhost:3000/api/vehicles/${id}`;
+      console.log(url);
+      try {
+        const request = await fetch(url, {
+          method: 'PATCH',
+          body: JSON.stringify(data),
+          headers: {
+            'Content-type': 'application/json',
+          },
+        });
+        const response = await request.json();
+        console.log(response);
+        window.location.reload();
+      } catch (err) {
+        console.log(err.message);
+      }
+    },
   },
 };
 </script>

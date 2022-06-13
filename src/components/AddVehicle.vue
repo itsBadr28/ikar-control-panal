@@ -214,17 +214,17 @@
                   </label>
                 <div class="">
                     <div class="flex flex-wrap justify-start">
-                   <input type="checkbox" v-model="posts.hasbluetooth" class="h-4 w-4 outline-none my-auto mx-3 mb-1" name="hasBluetooth" value="1">
+                   <input type="checkbox" v-model="posts.hasbluetooth" class="h-4 w-4 outline-none my-auto mx-3 mb-1" name="hasbluetooth" value="1">
                    <label class="block uppercase tracking-wide text-gray-300 text-sm mb-1  daek:text-gray-700 my-auto">Bluetooth</label>
-                   <input type="checkbox" v-model="posts.hascruisecontrol" class="h-4 w-4 outline-none my-auto mx-3 mb-1" name="hasAMFMstereoRadio" value="1">
+                   <input type="checkbox" v-model="posts.hascruisecontrol" class="h-4 w-4 outline-none my-auto mx-3 mb-1" name="hascruisecontrol" value="1">
                    <label class="block uppercase tracking-wide text-gray-300 text-sm mb-1  daek:text-gray-700 my-auto"> Cruise Control</label>
                     </div>
                     <div class="flex flex-wrap justify-start">
-                   <input type="checkbox" v-model="posts.hasAMFMstereoRadio" class="h-4 w-4 outline-none my-auto mx-3 mb-1" name="hasairconditioning" value="1">
+                   <input type="checkbox" v-model="posts.hasAMFMstereoRadio" class="h-4 w-4 outline-none my-auto mx-3 mb-1" name="hasAMFMstereoRadio" value="1">
                    <label class="block uppercase tracking-wide text-gray-300 text-sm mb-1  daek:text-gray-700 my-auto">Am/FM Stereo Radio</label>
-                   <input type="checkbox" v-model="posts.hasairconditioning" class="h-4 w-4 outline-none my-auto mx-3 mb-1" name="hasleatherInterior" value="1">
+                   <input type="checkbox" v-model="posts.hasairconditioning" class="h-4 w-4 outline-none my-auto mx-3 mb-1" name="hasairconditioning" value="1">
                    <label class="block uppercase tracking-wide text-gray-300 text-sm mb-1 pr-8 daek:text-gray-700 my-auto"> Air Conditioning </label> 
-                   <input type="checkbox" v-model="posts.hasleatherInterior" class="h-4 w-4 outline-none my-auto mx-3 mb-1" name="LeatherInterior" value="1">
+                   <input type="checkbox" v-model="posts.hasleatherInterior" class="h-4 w-4 outline-none my-auto mx-3 mb-1" name="hasleatherInterior" value="1">
                    <label class="block uppercase tracking-wide text-gray-300 text-sm mb-1 pr-8 daek:text-gray-700 my-auto"> Leather Interior </label>                  
                     </div>
                     
